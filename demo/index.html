@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            height: 1000px;
+            background-color: orangered;
+        }
+        /*媒体查询：当使用min-width作为判断条件一定要从小到大，其原因是CSS从上往下执行 ，使用max-width则相反*/
+       /* @media screen and (max-width: 768px){相对于当前浏览器大小
+            !*这里的代码只有条件满足时才会执行*!
+            .container {
+                width: 750px;
+            }
+        }*/
+        @media screen and (min-width: 768px) and (max-width: 992px){
+            /*这里的代码只有条件满足时才会执行*/
+            .container {
+                width: 750px;
+            }
+        }
+        @media screen and (min-width: 992px){
+            /*这里的代码只有条件满足时才会执行*/
+            .container {
+                width: 970px;
+            }
+        }
+        @media screen and (min-width: 1200px){
+            /*这里的代码只有条件满足时才会执行*/
+            .container {
+                width: 1170px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container"></div>
+</body>
+</html>

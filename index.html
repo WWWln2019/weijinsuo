@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>微金所-安全的互联网微金融资产交易平台</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <!-- X-UA-Compatible是IE8的一个专有meta属性，对于IE8以下的浏览器是不识别的。
+    通过在meta中设置## X-UA-Compatible的值，可以指定网页的兼容性模式。在HTML的<head>标签中使用。
+    设置浏览器的兼容模式版本  IE 最新的渲染引擎工作-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--
+    声明当前网页在移动浏览器中展示的相关设置
+   视口的作用： 在移动浏览器中，当页面宽度超出设备，浏览器内部虚拟了一个页面容器，将这个页面容器缩放到设备这么大，然后展示
+   目前大多数手机浏览器的视口，承载页面的容器，宽度都是980
+   效果：网页的1px=实际的1px
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.css">
+    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+    <!--条件注释的作用就是当判断条件满足时，就会执行注释中的HTML代码，条件不满足时，会当作注释忽略掉-->
+    <!--[if lt IE 9]>
+    <script src="./lib/html5shiv/html5shiv.js"></script>
+    <script src="./lib/respond/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+<!--.container 类用于固定宽度并支持响应式布局的容器-->
+<!--头部区域-->
+<header id="header">
+    <!--hidden-sm hidden-xs在超小屏和小屏中隐藏-->
+    <!--<div class="topbar hidden-sm hidden-xs">-->
+    <!--在中屏幕和大屏幕中显示-->
+    <div class="topbar visible-md visible-lg">
+        <!--固定宽度且居中-->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2 text-center">
+                    <a class="icon- mobile_link" href="#">
+                        <!--第三方字体图标-->
+                        <i class="icon-mobilephone"></i>
+                        <!--bootstrap中的字体图标-->
+                        <span>手机微金所</span>
+                        <i class="glyphicon glyphicon-chevron-down"></i>
+                        <img src="imgs/c_06.jpg" alt="扫一扫">
+                    </a>
+                </div>
+                <!--字体居中-->
+                <div class="col-md-5 text-center">
+                    <i class="icon-telephone"></i>
+                    <span> 4006-89-4006（服务时间：9:00-21:00）</span>
+                </div>
+                <div class="col-md-2 text-center">
+                    <a href="#">常见问题</a>
+                    <a href="#">财富登录</a>
+                </div>
+                <div class="col-md-3 text-center">
+                    <a class="btn btn-my btn-sm">免费注册</a>
+                    <a class="btn btn-link btn-sm">登录</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--navbar的z-index为1000-->
+    <nav class="navbar navbar-my navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <!--汉堡菜单-->
+                <!--展开和收起data-toggle="collapse"-->
+                <!--切换目标data-target="#bs-example-navbar-collapse-1"-->
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#nav-list" aria-expanded="false">
+                    <!--screen readonly-->
+                    <span class="sr-only">切换菜单</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <i class="icon-icon"></i>
+                    <i class="icon-logo"></i>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" id="nav-list">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">我要投资</a></li>
+                    <li><a href="#">我要借款</a></li>
+                    <li><a href="#">平台介绍</a></li>
+                    <li><a href="#">新手专区</a></li>
+                    <li><a href="#">最新动态</a></li>
+                    <li><a href="#">微论坛</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right hidden-sm">
+                    <li><a href="#">个人中心</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<!--/头部区域-->
+<!--广告轮播-->
+<section id="main-ad" class="carousel slide" data-ride="carousel">
+    <!-- Indicators 活动指示器 小点-->
+    <ol class="carousel-indicators">
+        <li data-target="#main-ad" data-slide-to="0" class="active"></li>
+        <li data-target="#main-ad" data-slide-to="1"></li>
+        <li data-target="#main-ad" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides 轮播项-->
+    <div class="carousel-inner" role="listbox">
+        <div class="item active" data-img-lg="imgs/slide_01_2000x410.jpg" data-img-xs="imgs/slide_01_640x340.jpg">
+            <!--
+            在一个较小的屏幕下展示一个超宽的图片，想让图片居中：
+            1.背景图 background-size:contain;
+            2.position:absolute; left:50%;margin-left:-width/2;(transform:translateX(-50%))
+            3.不能使用text-aligin:center;因为图片太大，已经超出了父容器
+            <img src="" alt="...">
+            -->
+            <!--<div class="carousel-caption">
+                标题
+            </div>-->
+            <!--为了让图片在不同的设备上显示不同尺寸的图片。需要图片自适应-->
+        </div>
+        <div class="item" data-img-lg="imgs/slide_02_2000x410.jpg" data-img-xs="imgs/slide_02_640x340.jpg">
+        </div>
+        <div class="item" data-img-lg="imgs/slide_03_2000x410.jpg" data-img-xs="imgs/slide_03_640x340.jpg">
+        </div>
+
+        <!-- Controls 控制按钮-->
+        <a class="left carousel-control" href="#main-ad" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#main-ad" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</section>
+<!--/广告轮播-->
+<!--特色介绍-->
+<!--hidden-xxx 谁隐藏就只隐藏谁，其他的均显示-->
+<section id="produce" class="hidden-xs">
+    <div class="container">
+        <div class="row">
+            <!--屏幕>992px时，占4列，共3列，此时，若屏幕大小为1200以上也会匹配到col-md-4-->
+            <div class="col-sm-6 col-md-4">
+                <a href="#">
+                    <div class="media">
+                        <div class="media-left">
+                            <i class="icon-uniE907"></i>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">支付交易保障</h4>
+                            <p>银联支付全程保证支付安全</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <a href="#">
+                    <div class="media">
+                        <div class="media-left">
+                            <i class="icon-uniE903"></i>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">平台财产安全</h4>
+                            <p>由PICC保驾护航</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <a href="#">
+                    <div class="media">
+                        <div class="media-left">
+                            <i class="icon-uniE901"></i>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">交易安全</h4>
+                            <p>由中国人寿财险对借款人承保</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <a href="#">
+                    <div class="media">
+                        <div class="media-left">
+                            <i class="icon-uniE900"></i>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">安全保障</h4>
+                            <p>独创八层安全保障机制</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <a href="#">
+                    <div class="media">
+                        <div class="media-left">
+                            <i class="icon-uniE904"></i>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">筛选优质资产</h4>
+                            <p>对接上海资信征信系统</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <a href="#">
+                    <div class="media">
+                        <div class="media-left">
+                            <i class="icon-uniE902"></i>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">联合信息发布</h4>
+                            <p>通过路透社共同发布利率指数报告</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/特色介绍-->
+<!--立即预约-->
+<section id="book">
+    <div class="container">
+        <p class="pull-left"><i class="icon-uniE906"></i>现在有<span>458</span>人在排队，累计预约交易成功<span>7409</span>次。
+            什么是预约投标？
+            <a href="#">立即预约</a>
+        </p>
+        <!--pull-right 向右浮动-->
+        <!--hidden-xs-->
+        <P class="pull-right hidden-xs hidden-sm"><i class="icon-uniE905"></i><a href="#">微金所企业宣传片</a></P>
+    </div>
+</section>
+<!--/立即预约-->
+<!--产品推荐-->
+<section id="products">
+    <div class="container">
+        <!-- Nav tabs选项卡标题 -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#tab_01" aria-controls="tab_01" role="tab"
+                                                      data-toggle="tab">特别推荐</a>
+            </li>
+            <li role="presentation"><a href="#tab_02" aria-controls="tab_02" role="tab"
+                                       data-toggle="tab">微投资</a>
+            </li>
+            <li role="presentation"><a href="#tab_03" aria-controls="tab_03" role="tab"
+                                       data-toggle="tab">微小宝</a></li>
+            <li role="presentation"><a href="#tab_04" aria-controls="tab_04" role="tab"
+                                       data-toggle="tab">微消费</a></li>
+            <li role="presentation"><a href="#tab_04" aria-controls="tab_04" role="tab"
+                                       data-toggle="tab">微增利</a></li>
+            <li role="presentation"><a href="#tab_04" aria-controls="tab_04" role="tab"
+                                       data-toggle="tab">微金宝</a></li>
+            <li role="presentation"><a href="#tab_04" aria-controls="tab_04" role="tab"
+                                       data-toggle="tab">微转让</a></li>
+            <li class="pull-right"><a href="#">更多</a></li>
+        </ul>
+
+        <!-- Tab panes 选项卡内容-->
+        <!--bootstrap中可以设置淡入淡出：.fade类和.fade .in-->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade in active" id="tab_01">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="panel panel-my active">
+                            <div class="panel-heading">
+                                <p><strong>8</strong><sub>%</sub><br>
+                                    <span>年利率</span>
+                                </p>
+                            </div>
+                            <div class="panel-body">
+                                <h5>新手体验表0605期</h5>
+                                <div class="row">
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="panel panel-my">
+                            <div class="panel-heading">
+                                <p><strong>8</strong><sub>%</sub><br>
+                                    <span>年利率</span>
+                                </p>
+                            </div>
+                            <div class="panel-body">
+                                <h5>新手体验表0605期</h5>
+                                <div class="row">
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="panel panel-my disabled">
+                            <div class="panel-heading">
+                                <p><strong>8</strong><sub>%</sub><br>
+                                    <span>年利率</span>
+                                </p>
+                            </div>
+                            <div class="panel-body">
+                                <h5>新手体验表0605期</h5>
+                                <div class="row">
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="panel panel-my">
+                            <div class="panel-heading">
+                                <p><strong>8</strong><sub>%</sub><br>
+                                    <span>年利率</span>
+                                </p>
+                            </div>
+                            <div class="panel-body">
+                                <h5>新手体验表0605期</h5>
+                                <div class="row">
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="panel panel-my">
+                            <div class="panel-heading">
+                                <p><strong>8</strong><sub>%</sub><br>
+                                    <span>年利率</span>
+                                </p>
+                            </div>
+                            <div class="panel-body">
+                                <h5>新手体验表0605期</h5>
+                                <div class="row">
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="panel panel-my">
+                            <div class="panel-heading">
+                                <p><strong>8</strong><sub>%</sub><br>
+                                    <span>年利率</span>
+                                </p>
+                            </div>
+                            <div class="panel-body">
+                                <h5>新手体验表0605期</h5>
+                                <div class="row">
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane fade " id="tab_02">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="panel panel-my active">
+                            <div class="panel-heading">
+                                <p><strong>8</strong><sub>%</sub><br>
+                                    <span>年利率</span>
+                                </p>
+                            </div>
+                            <div class="panel-body">
+                                <h5>新手体验表0605期</h5>
+                                <div class="row">
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="panel panel-my">
+                            <div class="panel-heading">
+                                <p><strong>8</strong><sub>%</sub><br>
+                                    <span>年利率</span>
+                                </p>
+                            </div>
+                            <div class="panel-body">
+                                <h5>新手体验表0605期</h5>
+                                <div class="row">
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="panel panel-my disabled">
+                            <div class="panel-heading">
+                                <p><strong>8</strong><sub>%</sub><br>
+                                    <span>年利率</span>
+                                </p>
+                            </div>
+                            <div class="panel-body">
+                                <h5>新手体验表0605期</h5>
+                                <div class="row">
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="panel panel-my">
+                            <div class="panel-heading">
+                                <p><strong>8</strong><sub>%</sub><br>
+                                    <span>年利率</span>
+                                </p>
+                            </div>
+                            <div class="panel-body">
+                                <h5>新手体验表0605期</h5>
+                                <div class="row">
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="panel panel-my">
+                            <div class="panel-heading">
+                                <p><strong>8</strong><sub>%</sub><br>
+                                    <span>年利率</span>
+                                </p>
+                            </div>
+                            <div class="panel-body">
+                                <h5>新手体验表0605期</h5>
+                                <div class="row">
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="panel panel-my">
+                            <div class="panel-heading">
+                                <p><strong>8</strong><sub>%</sub><br>
+                                    <span>年利率</span>
+                                </p>
+                            </div>
+                            <div class="panel-body">
+                                <h5>新手体验表0605期</h5>
+                                <div class="row">
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane fade " id="tab_03">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="panel panel-my">
+                            <div class="panel-heading">
+                                <p><strong>8</strong><sub>%</sub><br>
+                                    <span>年利率</span>
+                                </p>
+                            </div>
+                            <div class="panel-body">
+                                <h5>新手体验表0605期</h5>
+                                <div class="row">
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="panel panel-my">
+                            <div class="panel-heading">
+                                <p><strong>8</strong><sub>%</sub><br>
+                                    <span>年利率</span>
+                                </p>
+                            </div>
+                            <div class="panel-body">
+                                <h5>新手体验表0605期</h5>
+                                <div class="row">
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="panel panel-my disabled">
+                            <div class="panel-heading">
+                                <p><strong>8</strong><sub>%</sub><br>
+                                    <span>年利率</span>
+                                </p>
+                            </div>
+                            <div class="panel-body">
+                                <h5>新手体验表0605期</h5>
+                                <div class="row">
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="panel panel-my">
+                            <div class="panel-heading">
+                                <p><strong>8</strong><sub>%</sub><br>
+                                    <span>年利率</span>
+                                </p>
+                            </div>
+                            <div class="panel-body">
+                                <h5>新手体验表0605期</h5>
+                                <div class="row">
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="panel panel-my">
+                            <div class="panel-heading">
+                                <p><strong>8</strong><sub>%</sub><br>
+                                    <span>年利率</span>
+                                </p>
+                            </div>
+                            <div class="panel-body">
+                                <h5>新手体验表0605期</h5>
+                                <div class="row">
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="panel panel-my">
+                            <div class="panel-heading">
+                                <p><strong>8</strong><sub>%</sub><br>
+                                    <span>年利率</span>
+                                </p>
+                            </div>
+                            <div class="panel-body">
+                                <h5>新手体验表0605期</h5>
+                                <div class="row">
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane fade " id="tab_04">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="panel panel-my disabled">
+                            <div class="panel-heading">
+                                <p><strong>8</strong><sub>%</sub><br>
+                                    <span>年利率</span>
+                                </p>
+                            </div>
+                            <div class="panel-body">
+                                <h5>新手体验表0605期</h5>
+                                <div class="row">
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="panel panel-my">
+                            <div class="panel-heading">
+                                <p><strong>8</strong><sub>%</sub><br>
+                                    <span>年利率</span>
+                                </p>
+                            </div>
+                            <div class="panel-body">
+                                <h5>新手体验表0605期</h5>
+                                <div class="row">
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="panel panel-my disabled">
+                            <div class="panel-heading">
+                                <p><strong>8</strong><sub>%</sub><br>
+                                    <span>年利率</span>
+                                </p>
+                            </div>
+                            <div class="panel-body">
+                                <h5>新手体验表0605期</h5>
+                                <div class="row">
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="panel panel-my">
+                            <div class="panel-heading">
+                                <p><strong>8</strong><sub>%</sub><br>
+                                    <span>年利率</span>
+                                </p>
+                            </div>
+                            <div class="panel-body">
+                                <h5>新手体验表0605期</h5>
+                                <div class="row">
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="panel panel-my">
+                            <div class="panel-heading">
+                                <p><strong>8</strong><sub>%</sub><br>
+                                    <span>年利率</span>
+                                </p>
+                            </div>
+                            <div class="panel-body">
+                                <h5>新手体验表0605期</h5>
+                                <div class="row">
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="panel panel-my">
+                            <div class="panel-heading">
+                                <p><strong>8</strong><sub>%</sub><br>
+                                    <span>年利率</span>
+                                </p>
+                            </div>
+                            <div class="panel-body">
+                                <h5>新手体验表0605期</h5>
+                                <div class="row">
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/产品推荐-->
+<!--新闻-->
+<section class="wjs_news">
+    <div class="container">
+        <div class="col-md-2 col-md-offset-2">
+            <h3 class="wjs_news_title">全部新闻</h3>
+        </div>
+        <div class="col-md-1">
+            <div class="wjs_news_line hidden-sm hidden-xs"></div>
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#home" data-title="全部新闻" data-toggle="tab"><span class="icon-news-01"></span></a></li>
+                <li><a href="#profile" data-title="新闻列表" data-toggle="tab"><span class="icon-news-02"></span></a></li>
+                <li><a href="#messages" data-title="语音" data-toggle="tab"><span class="icon-news-03"></span></a></li>
+                <li><a href="#settings" data-title="PC" data-toggle="tab"><span class="icon-news-04"></span></a></li>
+            </ul>
+        </div>
+        <div class="col-md-7">
+            <div class="tab-content">
+                <div class="tab-pane active" id="home">
+                    <ul class="wjs_news_content">
+                        <li><a href="#">2016-09-22【微还款】一周还款公告2016年1月18日-1月24日</a></li>
+                        <li><a href="#">2016-09-22【微还款】一周还款公告2016年1月18日-1月24日</a></li>
+                        <li><a href="#">2016-09-22【微还款】一周还款公告2016年1月18日-1月24日</a></li>
+                        <li><a href="#">2016-09-22【微还款】一周还款公告2016年1月18日-1月24日</a></li>
+                        <li><a href="#">2016-09-22【微还款】一周还款公告2016年1月18日-1月24日</a></li>
+                        <li><a href="#">2016-09-22【微还款】一周还款公告2016年1月18日-1月24日</a></li>
+                        <li><a href="#">2016-09-22【微还款】一周还款公告2016年1月18日-1月24日</a></li>
+                        <li><a href="#">2016-09-22【微还款】一周还款公告2016年1月18日-1月24日</a></li>
+                    </ul>
+                </div>
+                <div class="tab-pane" id="profile">
+                    新闻列表
+                </div>
+                <div class="tab-pane" id="messages">
+                    语音
+                </div>
+                <div class="tab-pane" id="settings">
+                    PC
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--合作伙伴-->
+<footer class="wjs_partner">
+    <div class="container">
+        <h3 class="text-center">合作伙伴</h3>
+        <ul>
+            <li><a href="#"><span class="icon-partner01"></span></a></li>
+            <li><a href="#"><span class="icon-partner02"></span></a></li>
+            <li><a href="#"><span class="icon-partner03"></span></a></li>
+            <li><a href="#"><span class="icon-partner04"></span></a></li>
+            <li><a href="#"><span class="icon-partner05"></span></a></li>
+            <li><a href="#"><span class="icon-partner06"></span></a></li>
+            <li><a href="#"><span class="icon-partner07"></span></a></li>
+            <li><a href="#"><span class="icon-partner08"></span></a></li>
+            <li><a href="#"><span class="icon-partner09"></span></a></li>
+        </ul>
+    </div>
+</footer>
+<!--使用模版引擎-->
+<script type="text/template" id="pointTemplate">
+    <% for(var i = 0 ; i < list.length ; i ++){ %>
+    <li data-target="#carousel-example-generic" data-slide-to="<%=i%>" class="<%=i==0?'active':''%>"></li>
+    <% } %>
+</script>
+<script type="text/template" id="imageTemplate">
+    <% for(var i = 0 ; i < list.length ; i ++){ %>
+    <div class="item <%=i==0?'active':''%>">
+        <% if(isMobile){ %>
+        <a href="#" class="m_imgBox"><img src="<%=list[i].mUrl%>" alt=""></a>
+        <% }else{ %>
+        <a href="#" class="pc_imgBox" style="background-image: url(<%=list[i].pcUrl%>)"></a>
+        <% } %>
+    </div>
+    <% } %>
+</script>
+<!--/脚注区域-->
+<!--建议将脚本放在body后面，样式放在head中-->
+<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+<script type="text/javascript" src="./lib/jquery/jquery.js"></script>
+<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+<script src="./lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="./js/main.js"></script>
+</body>
+
+</html>

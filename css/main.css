@@ -1,0 +1,770 @@
+/**
+* 自定义样式
+ */
+.btn-my {
+    color: #FFFFFF;
+    background-color: #E9232C;
+    border-color: #DB3B43;
+}
+
+.btn-my:hover,
+.btn-my:focus,
+.btn-my:active,
+.btn-my.active,
+.open .dropdown-toggle.btn-my {
+    color: #FFFFFF;
+    background-color: #F5425A;
+    border-color: #DB3B43;
+}
+
+.btn-my:active,
+.btn-my.active,
+.open .dropdown-toggle.btn-my {
+    background-image: none;
+}
+
+.btn-my.disabled,
+.btn-my[disabled],
+fieldset[disabled] .btn-my,
+.btn-my.disabled:hover,
+.btn-my[disabled]:hover,
+fieldset[disabled] .btn-my:hover,
+.btn-my.disabled:focus,
+.btn-my[disabled]:focus,
+fieldset[disabled] .btn-my:focus,
+.btn-my.disabled:active,
+.btn-my[disabled]:active,
+fieldset[disabled] .btn-my:active,
+.btn-my.disabled.active,
+.btn-my[disabled].active,
+fieldset[disabled] .btn-my.active {
+    background-color: #E9232C;
+    border-color: #DB3B43;
+}
+
+.btn-my .badge {
+    color: #E9232C;
+    background-color: #FFFFFF;
+}
+
+.navbar-my {
+    background-color: #fff;
+    border-color: #f5f5f5;
+    margin-bottom: 0;
+}
+
+.navbar-my .navbar-brand {
+    color: #777;
+    height: 80px;
+}
+
+.navbar-my .navbar-brand:hover,
+.navbar-my .navbar-brand:focus {
+    color: #5e5e5e;
+    background-color: transparent;
+}
+
+.navbar-my .navbar-text {
+    color: #777;
+}
+
+.navbar-my .navbar-nav > li > a {
+    color: #777;
+    line-height: 48px;
+    font-size: 14px;
+}
+
+.navbar-my .navbar-nav > li > a:hover,
+.navbar-my .navbar-nav > li > a:focus {
+    color: #333;
+    background-color: transparent;
+    border-bottom: 2px solid #e92322;
+}
+
+.navbar-my .navbar-nav > .active > a,
+.navbar-my .navbar-nav > .active > a:hover,
+.navbar-my .navbar-nav > .active > a:focus {
+    color: #555;
+    background-color: transparent;
+    border-bottom: 2px solid #e92322;
+}
+
+.navbar-my .navbar-nav > .disabled > a,
+.navbar-my .navbar-nav > .disabled > a:hover,
+.navbar-my .navbar-nav > .disabled > a:focus {
+    color: #ccc;
+    background-color: transparent;
+}
+
+.navbar-my .navbar-nav > .open > a,
+.navbar-my .navbar-nav > .open > a:hover,
+.navbar-my .navbar-nav > .open > a:focus {
+    color: #555;
+    background-color: #e7e7e7;
+}
+
+@media (max-width: 767px) {
+    .navbar-my .navbar-nav .open .dropdown-menu > li > a {
+        color: #777;
+    }
+
+    .navbar-my .navbar-nav .open .dropdown-menu > li > a:hover,
+    .navbar-my .navbar-nav .open .dropdown-menu > li > a:focus {
+        color: #333;
+        background-color: transparent;
+    }
+
+    .navbar-my .navbar-nav .open .dropdown-menu > .active > a,
+    .navbar-my .navbar-nav .open .dropdown-menu > .active > a:hover,
+    .navbar-my .navbar-nav .open .dropdown-menu > .active > a:focus {
+        color: #555;
+        background-color: #e7e7e7;
+    }
+
+    .navbar-my .navbar-nav .open .dropdown-menu > .disabled > a,
+    .navbar-my .navbar-nav .open .dropdown-menu > .disabled > a:hover,
+    .navbar-my .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+        color: #ccc;
+        background-color: transparent;
+    }
+}
+
+.navbar-my .navbar-toggle {
+    border-color: #ddd;
+    margin-top: 23px;
+    margin-bottom: 23px;
+}
+
+.navbar-my .navbar-toggle:hover,
+.navbar-my .navbar-toggle:focus {
+    background-color: #ddd;
+}
+
+.navbar-my .navbar-toggle .icon-bar {
+    background-color: #888;
+}
+
+.navbar-my .navbar-collapse,
+.navbar-my .navbar-form {
+    border-color: #e7e7e7;
+}
+
+.navbar-my .navbar-link {
+    color: #777;
+}
+
+.navbar-my .navbar-link:hover {
+    color: #333;
+}
+
+.navbar-my .btn-link {
+    color: #777;
+}
+
+.navbar-my .btn-link:hover,
+.navbar-my .btn-link:focus {
+    color: #333;
+}
+
+.navbar-my .btn-link[disabled]:hover,
+fieldset[disabled] .navbar-my .btn-link:hover,
+.navbar-my .btn-link[disabled]:focus,
+fieldset[disabled] .navbar-my .btn-link:focus {
+    color: #ccc;
+}
+
+.panel-my {
+    border: 0;
+    border-radius: 0;
+    box-shadow: 1px 1px 5px #ccc;
+}
+
+.panel-my > .panel-heading strong,
+.panel-my.disabled > .panel-heading strong {
+    font-size: 36px;
+    color: #e92322;
+}
+
+.panel-my > .panel-heading span,
+.panel-my.disabled > .panel-heading span {
+    font-size: 10px;
+    color: #222;
+}
+.panel-my.active > .panel-heading strong {
+    color: #fff;
+}
+.panel-my.active > .panel-heading span {
+    color: #fff;
+}
+.panel-my.active {
+    background-color: #e92322;
+    color: #fff;
+}
+
+.panel-my.active::before {
+    content: '\e915';
+    font-family: myfont;
+    position: absolute;
+    font-size: 50px;
+    top: -13px;
+    left: 12px;
+}
+
+.panel-my.active .panel-heading {
+    color: #fff;
+}
+
+.panel-my.disabled {
+    background-color: #e0e0e0;
+}
+
+.panel-my > .panel-heading {
+    color: #333;
+    /* background-color: #f5f5f5;
+     border-color: #ddd;*/
+    float: right;
+    width: 120px;
+    height: 150px;
+    border-left: 1px dashed #c0c0c0;
+    text-align: center;
+    position: relative;
+    padding: 45px 0 35px;
+}
+
+.panel-my > .panel-heading::before,
+.panel-my > .panel-heading::after {
+    content: ' ';
+    width: 16px;
+    height: 16px;
+    /*只要比50%大，都为圆，因为饱和了*/
+    border-radius: 8px;
+    background-color: #f0f0f0;
+    position: absolute;
+}
+
+.panel-my > .panel-heading::before {
+    top: -8px;
+    left: -8px;
+}
+
+.panel-my > .panel-heading::after {
+    bottom: -8px;
+    left: -8px;
+    /*box-shadow是从左上方照射的，方向设为0，则从上方照射，故下侧看不到,而且必须为内阴影*/
+    box-shadow: 0 2px 1px #ccc inset;
+}
+
+.panel-my > .panel-body {
+    margin-right: 120px;
+    height: 150px;
+
+}
+
+.panel-my > .panel-heading + .panel-collapse > .panel-body {
+    border-top-color: #ddd;
+}
+
+.panel-my > .panel-heading .badge {
+    color: #f5f5f5;
+    background-color: #333;
+}
+
+/*公共样式*/
+body {
+    font-family: "Helvetica Neue", Helvetica, Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;
+}
+
+a {
+    color: #888;
+}
+
+/*字体图标*/
+@font-face {
+    font-family: "myfont";
+    src: url('../fonts-before/MiFie-Web-Font.eot') format('embedded-opentype'),
+    url('../fonts-before/MiFie-Web-Font.svg') format('svg'), /* IE6-IE8 */
+    url('../fonts-before/MiFie-Web-Font.ttf') format('truetype'),
+    url('../fonts-before/MiFie-Web-Font.woff') format('woff') /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+    /*url('../fonts-before/iconfont.svg?t=1551429683345#iconfont') format('svg')*/; /* iOS 4.1- */
+}
+
+[class^='icon-'], [class*=' icon-'] {
+    font-family: myfont !important;
+    font-style: normal;
+}
+
+.icon-mobilephone:before {
+    content: "\e908";
+    font-size: 15px;
+}
+
+.icon-telephone:before {
+    content: "\e909";
+    font-size: 15px;
+}
+
+.icon-logo:before {
+    content: "\e93e";
+}
+
+.icon-icon:before {
+    content: "\e920";
+}
+
+.icon-news-01::before {
+    content: "\e90e";
+}
+
+.icon-news-02::before {
+    content: "\e90f";
+}
+
+.icon-news-03::before {
+    content: "\e910";
+}
+
+.icon-news-04::before {
+    content: "\e911";
+}
+
+.icon-partner01::before {
+    content: "\e946";
+}
+
+.icon-partner02::before {
+    content: "\e92f";
+}
+
+.icon-partner03::before {
+    content: "\e92e";
+}
+
+.icon-partner04::before {
+    content: "\e92a";
+}
+
+.icon-partner05::before {
+    content: "\e929";
+}
+
+.icon-partner06::before {
+    content: "\e931";
+}
+
+.icon-partner07::before {
+    content: "\e92c";
+}
+
+.icon-partner08::before {
+    content: "\e92b";
+}
+
+.icon-partner09::before {
+    content: "\e92d";
+}
+/*样式都用ID*/
+/*头部区域*/
+#header {
+    /*height: 200px;*/
+}
+
+/*尽可能使用直接子代选择器*/
+#header > .topbar {
+    height: 40px;
+    border-bottom: 1px solid #c0c0c0;
+    line-height: 40px;
+}
+
+
+#header > .topbar > .container > .row > div {
+    color: #888;
+    font-size: 12px;
+    height: 40px;
+}
+
+/*+选择器，找满足这个条件，后面所有的兄弟元素*/
+#header > .topbar > .container > .row > div + div {
+    border-left: 1px solid #c0c0c0;
+}
+
+#header .mobile_link {
+    font-size: 12px;
+    color: #888;
+    position: relative;
+}
+
+#header .mobile_link:hover {
+    font-size: 12px;
+    text-decoration: none;
+
+}
+
+#header .mobile_link > img {
+    display: none;
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+}
+
+#header .mobile_link:hover > img {
+    display: block;
+}
+
+#header .btn-my {
+    color: #fff;
+}
+
+#header .icon-icon {
+    font-size: 50px;
+    color: #e92322;
+    line-height: 50px;
+    vertical-align: middle;
+}
+
+#header .icon-logo {
+    font-size: 32px;
+    color: #333;
+    line-height: 50px;
+    vertical-align: middle;
+}
+
+/*头部区域*/
+
+/*section {
+    height: 200px;
+    background-color: #fff;
+}
+
+section:nth-of-type(2n) {
+    background-color: palegreen;
+}
+
+!*选择1，3，5，7，9...*!
+section:nth-of-type(2n+1) {
+    background-color: paleturquoise;
+}*/
+
+/*通栏广告区域*/
+#main-ad {
+
+}
+
+#main-ad > .carousel-inner > .item {
+    height: 410px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    /*若图片高度和容器高度不一样，则可以使用*/
+    background-size: cover;
+}
+
+/*
+    什么时候不能用410px高度？
+    可以通过媒体查询的方式控制
+*/
+/*当屏幕宽度大于768的时候才会执行，此时使用大图 */
+@media screen and (min-width: 768px) {
+    #main-ad > .carousel-inner > .item {
+        height: 410px;
+    }
+}
+
+#main-ad > .carousel-inner > .item > img {
+    width: 100%;
+}
+
+/*通栏广告区域*/
+/*特色介绍区域*/
+#produce {
+    padding: 50px 0;
+    border-bottom: 1px solid #c0c0c0;
+}
+
+#produce i {
+    font-size: 34px;
+}
+
+#produce .icon-uniE907::before {
+    content: '\e907';
+}
+
+#produce .icon-uniE903::before {
+    content: '\e903';
+}
+
+#produce .icon-uniE901::before {
+    content: '\e901';
+}
+
+#produce .icon-uniE900::before {
+    content: '\e900';
+}
+
+#produce .icon-uniE904::before {
+    content: '\e907';
+}
+
+#produce .icon-uniE902::before {
+    content: '\e902';
+}
+
+#produce > .container > .row > div {
+    height: 60px;
+    padding: 10px 0 60px 0px;
+}
+
+#produce > .container > .row > div > a {
+    color: #333;
+    text-decoration: none;
+}
+
+#produce > .container > .row > div > a:hover {
+    color: #e92322;
+    text-decoration: none;
+}
+
+/*#produce > .container > .row > div:nth-of-type(2n) {
+    height: 60px;
+    background-color: deeppink;
+}
+
+#produce > .container > .row > div:nth-of-type(2n+1) {
+    height: 60px;
+    background-color: deepskyblue;
+}*/
+
+/*特色介绍区域*/
+/*立即预约区域*/
+#book {
+    border-bottom: 1px solid #c0c0c0;
+    padding: 20px 0;
+}
+
+#book .icon-uniE906::before {
+    content: '\e906';
+    font-size: 14px;
+}
+
+#book .icon-uniE905::before {
+    content: '\e905';
+}
+
+#book > .container > p {
+    /*line-height: 60px;一旦换行，第二行也有行高，*/
+    font-size: 14px;
+    /*bootstrap默认p标签有10px的下外边距*/
+    margin-bottom: 0;
+}
+
+#book > .container .pull-left > span,
+#book > .container .pull-left > a {
+    color: #e92322;
+}
+
+#book > .container .pull-left > a {
+    border-bottom: 1px dashed #e92322;
+}
+
+#book > .container .pull-left > a:hover {
+    text-decoration: none;
+}
+
+/*立即预约区域*/
+/*产品推荐区域*/
+#products {
+    background-color: #f0f0f0;
+    padding: 40px 0;
+}
+
+#products > .container > .nav-tabs {
+    padding-left: 20px;
+}
+
+#products > .container > .nav-tabs > li {
+
+}
+
+#products > .container > .nav-tabs > li > a {
+    font-size: 16px;
+    color: #333;
+}
+
+#products > .container > .nav-tabs > li > a:hover {
+    background-color: transparent;
+    border-color: transparent;
+    color: #000;
+}
+
+#products > .container > .nav-tabs > li.active {
+
+}
+
+#products > .container > .nav-tabs > li.active > a {
+    background-color: transparent;
+    border: none;
+    border-bottom: 4px solid #e92322;
+}
+
+#products > .container > .tab-content {
+    padding: 20px 0;
+}
+
+#products > .container > .tab-content p {
+    margin-bottom: 0;
+}
+
+/*新闻区块*/
+.wjs_news{
+    padding: 40px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.wjs_news .wjs_news_title{
+    font-size: 20px;
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+    text-align: center;
+}
+.wjs_news .wjs_news_title::after{
+    content: "";
+    position: absolute;
+    right: -6px;
+    bottom: -3px;
+    width: 6px;
+    height: 6px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+}
+.wjs_news .wjs_news_line{
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    border-left: 1px dashed #ccc;
+    left: 45px;
+    top: 0;
+}
+.wjs_news .wjs_news_content{
+    list-style: none;
+}
+.wjs_news .wjs_news_content li a{
+    display: block;
+    padding: 15px 0;
+    color: #666;
+}
+
+.wjs_news .nav-tabs {
+    border-bottom:none;
+}
+.wjs_news .nav-tabs > li {
+    float: left;
+    margin-bottom: -1px;
+}
+.wjs_news .nav-tabs > li > a {
+    margin-right: 0;
+    border: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    background: #ccc;
+    margin-bottom:60px;
+    padding: 0;
+    line-height: 60px;
+    text-align: center;
+    color: #fff;
+    font-size: 30px;
+}
+/*1.在小屏设备  间距固定 没有虚线*/
+@media (min-width: 768px) and (max-width: 992px){
+    .wjs_news .nav-tabs > li > a{
+        margin: 30px 50px;
+    }
+}
+/*2.超小屏设备  间距自适应  没有虚线*/
+@media (max-width: 768px) {
+    .wjs_news .nav-tabs > li{
+        width: 25%;
+    }
+    .wjs_news .nav-tabs > li > a{
+        margin: 30px auto;
+    }
+}
+
+.wjs_news .nav-tabs > li:last-child > a{
+    margin-bottom:0;
+}
+.wjs_news .nav-tabs > li > a:hover {
+}
+.wjs_news .nav-tabs > li.active > a,
+.wjs_news .nav-tabs > li.active > a:hover,
+.wjs_news .nav-tabs > li.active > a:focus {
+    color: #fff;
+    cursor: default;
+    background-color: #e92322;
+    border: none;
+    border-bottom-color: transparent;
+}
+.wjs_news .nav-tabs.nav-justified {
+    width: 100%;
+    border-bottom: 0;
+}
+.wjs_news .nav-tabs.nav-justified > li {
+    float: none;
+}
+.wjs_news .nav-tabs.nav-justified > li > a {
+    margin-bottom: 5px;
+    text-align: center;
+}
+.wjs_news .nav-tabs.nav-justified > .dropdown .dropdown-menu {
+    top: auto;
+    left: auto;
+}
+@media (min-width: 768px) {
+    .wjs_news .nav-tabs.nav-justified > li {
+        display: table-cell;
+        width: 1%;
+    }
+    .wjs_news .nav-tabs.nav-justified > li > a {
+        margin-bottom: 0;
+    }
+}
+.wjs_news .nav-tabs.nav-justified > li > a {
+    margin-right: 0;
+    border-radius: 4px;
+}
+.wjs_news .nav-tabs.nav-justified > .active > a,
+.wjs_news .nav-tabs.nav-justified > .active > a:hover,
+.wjs_news .nav-tabs.nav-justified > .active > a:focus {
+    border: 1px solid #ddd;
+}
+@media (min-width: 768px) {
+    .wjs_news .nav-tabs.nav-justified > li > a {
+        border-bottom: 1px solid #ddd;
+        border-radius: 4px 4px 0 0;
+    }
+    .wjs_news .nav-tabs.nav-justified > .active > a,
+    .wjs_news .nav-tabs.nav-justified > .active > a:hover,
+    .wjs_news .nav-tabs.nav-justified > .active > a:focus {
+        border-bottom-color: #fff;
+    }
+}
+
+/*合作伙伴*/
+.wjs_partner{
+    padding: 50px 0;
+}
+.wjs_partner ul{
+    list-style: none;
+    text-align: center;
+    padding: 0;
+}
+.wjs_partner ul li{
+    display: inline-block;
+}
+.wjs_partner ul li a{
+    font-size: 70px;
+    padding: 0 15px;
+    display: block;
+}
