@@ -1,3 +1,2044 @@
+# 微金所项目实战
+
+## 1. 搭建Bootstrap页面骨架及项目目录结构
+
+```
+├─ /weijinsuo/ ··················· 项目所在目录
+└─┬─ /css/ ······················· 我们自己的CSS文件
+  ├─ /font/ ······················ 使用到的字体文件
+  ├─ /img/ ······················· 使用到的图片文件
+  ├─ /js/ ························ 自己写的JS脚步
+  ├─ /lib/ ······················· 从第三方下载回来的库【只用不改】
+  ├─ /favicon.ico ················ 站点图标
+  └─ /index.html ················· 入口文件
+```
+
+### 1.1.约定编码规范
+
+#### 1.1.1.HTML约定
+
+- 在head中引入必要的CSS文件，优先引用第三方的CSS，方便我们自己的样式覆盖
+- 在body末尾引入必要的JS文件，优先引用第三方的JS，注意JS文件之间的依赖关系，比如bootstrap.js依赖jQuery，那就应该先引用jquery.js 然后引用bootstrap.js
+
+#### 1.1.2.CSS约定
+
+- 除了公共级别样式，其余样式全部由 模块前缀
+- 尽量使用 直接子代选择器， 少用间接子代 避免错杀
+
+
+
+### 1.2.HTML5文档结构
+
+```html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>页面标题</title>
+</head>
+<body>
+  
+</body>
+</html>
+```
+
+### 1.3.Viewport设置
+
+```html
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+```
+
+> html中插入视口设置，可以通过emmet __meta:vp__ 插入
+
+### 1.4.浏览器兼容模式
+
+```html
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+```
+
+> html中插入兼容模式设置，可以通过emmet __meta:compat__ 插入
+
+### 1.5.favicon（站点图标）
+
+```html
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+```
+
+> html中插入图标链接，可以通过emmet __link:favicon__ 插入
+
+### 1.6.引入相应的第三方文件
+
+```html
+<link rel="stylesheet" href="bootstrap.css">
+<link rel="stylesheet" href="my.css">
+...
+<script src="jquery.js"></script>
+<script src="bootstrap.js"></script>
+<script src="my.js"></script>
+```
+
+### 1.7.在我们默认的样式表中将默认字体设置为：
+
+```css
+body{
+  font-family: "Helvetica Neue", 
+                Helvetica, 
+                Microsoft Yahei, 
+                Hiragino Sans GB, 
+                WenQuanYi Micro Hei, 
+                sans-serif;
+}
+```
+
+## 2.完成页面空结构
+
+> 先划分好页面中的大容器，然后在具体看每一个容器中单独的情况
+
+```html
+<body>
+  <!-- 头部区域 -->
+  <header></header>
+  <!-- /头部区域 -->
+  <!-- 广告轮播 -->
+  <section></section>
+  <!-- /广告轮播 -->
+  <!-- 特色介绍 -->
+  <section></section>
+  <!-- /特色介绍 -->
+  <!-- 立即预约 -->
+  <section></section>
+  <!-- /立即预约 -->
+  <!-- 产品推荐 -->
+  <section></section>
+  <!-- /产品推荐 -->
+  <!-- 新闻列表 -->
+  <section></section>
+  <!-- /新闻列表 -->
+  <!-- 合作伙伴 -->
+  <section></section>
+  <!-- /合作伙伴 -->
+  <!-- 脚注区域 -->
+  <footer></footer>
+  <!-- /脚注区域 -->
+</body>
+```
+
+## 3.头部
+
+![1553769763363](C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\1553769763363.png)
+
+头部主要包含：
+
+#### 构建顶部通栏
+
+1.在中屏幕和大屏幕中显示，即添加.visible-md/.visible-lg类（或添加.hidden-xs/.hidden-sm）
+
+2.有版心，用.container包裹
+
+3.用bootstrap的栅格系统进行布局
+
+有4列：手机微金所、联系方式及服务时间、常见问题、登录注册；
+
+```html
+<header>
+  <div class="topbar"></div>
+</header>
+
+```
+
+##### 3.1.container类
+
+- 用于定义一个固定宽度且居中的版心
+
+```html
+<div class="topbar">
+  <div class="container">
+    <!--
+      此处的代码会显示在一个固定宽度且居中的容器中
+      该容器的宽度会跟随屏幕的变化而变化
+    -->
+  </div>
+</div>
+```
+
+##### 3.2.栅格系统
+
+- Bootstrap中定义了一套响应式的网格系统，
+- 其使用方式就是将一个容器划分成12列，
+- 然后通过col-xx-xx的类名控制每一列的占比
+
+###### 3.2.1.row类
+
+- 因为每一个列默认有一个15px的左右外边距
+- row类的一个作用就是通过左右-15px屏蔽掉这个边距
+
+```html
+<div class="container">
+  <div class="row"></div>
+</div>
+```
+
+###### 3.2.2.col-*\*-\*类
+
+- col-xs-[列数]：在超小屏幕下展示几份
+- col-sm-[列数]：在小屏幕下展示几份
+- col-md-[列数]：在中等屏幕下展示几份
+- col-lg-[列数]：在大屏幕下展示几份
+- __xs__ : 超小屏幕 手机 (<768px)  
+- __sm__ : 小屏幕 平板 (≥768px) 
+- __md__ : 中等屏幕 桌面显示器 (≥992px) 
+- __lg__ : 大屏幕 大桌面显示器 (≥1200px)
+
+```html
+<div class="row">
+  <div class="col-md-2 text-center"></div>
+  <div class="col-md-5 text-center"></div>
+  <div class="col-md-2 text-center"></div>
+  <div class="col-md-3 text-center"></div>
+</div>
+```
+
+> 此处顶部通栏已经被划分成四列
+> text-center的作用就是让内部内容居中显示
+
+##### 3.3.字体图标
+
+```css
+@font-face {
+  font-family: 'itcast';
+  src: url('../font/MiFie-Web-Font.eot') format('embedded-opentype'), url('../font/MiFie-Web-Font.svg') format('svg'), url('../font/MiFie-Web-Font.ttf') format('truetype'), url('../font/MiFie-Web-Font.woff') format('woff');
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+  /*注意上面选择器中间的空格*/
+  /*我们使用的名为itcast的字体就是上面的@font-face的方式声明的*/
+  font-family: itcast;
+  font-style: normal;
+}
+
+.icon-mobilephone::before{
+  content: '\e908';
+}
+```
+
+```html
+<div class="col-md-2 text-center">
+  <a class="mobile-link" href="#">
+    <i class="icon-mobile"></i>
+    <span>手机微金所</span>
+    <!-- 这里使用的是bootstrap中的字体图标 -->
+    <i class="glyphicon glyphicon-chevron-down"></i>
+    <img src="..." alt="">
+  </a>
+</div>
+```
+
+###### 字体文件格式
+
+- eot : embedded-opentype
+- svg : svg
+- ttf : truetype
+- woff : woff
+
+##### 3.4.hover图片展示
+
+```css
+.mobile-link:hover > img {
+  display: block;
+}
+```
+
+##### 3.5.按钮样式生成
+
+- http://blog.koalite.com/bbg/
+- 可以通过界面生成一个新的按钮样式
+
+```css
+.btn-itcast {
+  color: #ffffff;
+  background-color: #E92322;
+  border-color: #DB3B43;
+}
+
+.btn-itcast:hover,
+.btn-itcast:focus,
+.btn-itcast:active,
+.btn-itcast.active,
+.open .dropdown-toggle.btn-itcast {
+  color: #ffffff;
+  background-color: #E92322;
+  border-color: #DB3B43;
+}
+
+.btn-itcast:active,
+.btn-itcast.active,
+.open .dropdown-toggle.btn-itcast {
+  background-image: none;
+}
+
+.btn-itcast.disabled,
+.btn-itcast[disabled],
+fieldset[disabled] .btn-itcast,
+.btn-itcast.disabled:hover,
+.btn-itcast[disabled]:hover,
+fieldset[disabled] .btn-itcast:hover,
+.btn-itcast.disabled:focus,
+.btn-itcast[disabled]:focus,
+fieldset[disabled] .btn-itcast:focus,
+.btn-itcast.disabled:active,
+.btn-itcast[disabled]:active,
+fieldset[disabled] .btn-itcast:active,
+.btn-itcast.disabled.active,
+.btn-itcast[disabled].active,
+fieldset[disabled] .btn-itcast.active {
+  background-color: #E92322;
+  border-color: #DB3B43;
+}
+
+.btn-itcast .badge {
+  color: #E92322;
+  background-color: #ffffff;
+}
+```
+
+##### 3.6小屏幕隐藏
+
+```html
+<div class="topbar hidden-xs hidden-sm"></div>
+```
+
+或者
+
+```html
+<div class="topbar visible-md visible-lg"></div>
+```
+
+- __hidden-xx__ : 在某种屏幕下隐藏 
+- __visible-xx__ : 在某种屏幕尺寸下显示
+  - visible-xx-xx：最后一个xx是决定显示时的display到底是啥
+
+```html
+<div class="topbar visible-md visible-lg">
+        <!--固定宽度且居中-->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2 text-center">
+                    <a class="icon- mobile_link" href="#">
+                        <!--第三方字体图标-->
+                        <i class="icon-mobilephone"></i>
+                        <!--bootstrap中的字体图标-->
+                        <span>手机微金所</span>
+                        <i class="glyphicon glyphicon-chevron-down"></i>
+                        <img src="imgs/c_06.jpg" alt="扫一扫">
+                    </a>
+                </div>
+                <!--字体居中-->
+                <div class="col-md-5 text-center">
+                    <i class="icon-telephone"></i>
+                    <span> 4006-89-4006（服务时间：9:00-21:00）</span>
+                </div>
+                <div class="col-md-2 text-center">
+                    <a href="#">常见问题</a>
+                    <a href="#">财富登录</a>
+                </div>
+                <div class="col-md-3 text-center">
+                    <a class="btn btn-my btn-sm">免费注册</a>
+                    <a class="btn btn-link btn-sm">登录</a>
+                </div>
+            </div>
+        </div>
+    </div>
+```
+
+css样式
+
+```css
+/*样式都用ID*/
+/*头部区域*/
+#header {
+    /*height: 200px;*/
+}
+
+/*尽可能使用直接子代选择器*/
+#header > .topbar {
+    height: 40px;
+    border-bottom: 1px solid #c0c0c0;
+    line-height: 40px;
+}
+
+
+#header > .topbar > .container > .row > div {
+    color: #888;
+    font-size: 12px;
+    height: 40px;
+}
+
+/*+选择器，找满足这个条件，后面所有的兄弟元素*/
+#header > .topbar > .container > .row > div + div {
+    border-left: 1px solid #c0c0c0;
+}
+
+#header .mobile_link {
+    font-size: 12px;
+    color: #888;
+    position: relative;
+}
+
+#header .mobile_link:hover {
+    font-size: 12px;
+    text-decoration: none;
+
+}
+
+#header .mobile_link > img {
+    display: none;
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+}
+
+#header .mobile_link:hover > img {
+    display: block;
+}
+
+#header .btn-my {
+    color: #fff;
+}
+
+#header .icon-icon {
+    font-size: 50px;
+    color: #e92322;
+    line-height: 50px;
+    vertical-align: middle;
+}
+
+#header .icon-logo {
+    font-size: 32px;
+    color: #333;
+    line-height: 50px;
+    vertical-align: middle;
+}
+
+/*头部区域*/
+
+/*section {
+    height: 200px;
+    background-color: #fff;
+}
+
+section:nth-of-type(2n) {
+    background-color: palegreen;
+}
+
+!*选择1，3，5，7，9...*!
+section:nth-of-type(2n+1) {
+    background-color: paleturquoise;
+}*/
+
+```
+
+### 导航通栏
+
+- 在使用了boostrap过后，大多数界面元素都是通过bootstrap提供好的界面组件修改得来
+
+```html
+<nav class="navbar navbar-itcast navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button id="btn" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav_list" aria-expanded="false">
+        <span class="sr-only">切换菜单</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">
+        <i class="icon-icon"></i>
+        <i class="icon-logo"></i>
+      </a>
+    </div>
+    <div id="nav_list" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">我要投资</a></li>
+        <li><a href="#">我要借款</a></li>
+        <li><a href="#">平台介绍</a></li>
+        <li><a href="#">新手专区</a></li>
+        <li><a href="#">最新动态</a></li>
+        <li><a href="#">微论坛</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right hidden-sm">
+        <li><a href="#">个人中心</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+```
+
+1.在超小屏幕的时候隐藏，由于使用的时bootstrap的导航组件，可利用组件的特性来实现
+
+2.在中屏幕和大屏幕中显示**个人中心**，其他情况下隐藏
+
+3.有版心，用.container包裹
+
+4.使用navbar来实现导航条，自定义了一个navbar-my样式（改变来了背景色为#fff白色，），导航条静止在顶部（navbar-static-top）
+
+##### 4.1.Bootstrap扩展
+
+- 通过bootstrap文档对导航条样式的设置发现，其实本身是有一个类似于主题的概念
+- navbar-default：默认的外观
+- navbar-inverse：暗色背景的样式
+- 所以我们希望可以通过自定义一套完整的风格：
+  - navbar-itcast
+
+```css
+.navbar-itcast{
+  ...
+}
+...具体代码参考navbar-default实现即可
+
+```
+
+##### 4.2.品牌logo
+
+- 仍然使用字体图标
+
+##### 4.3.菜单行高调整
+
+- 默认样式中菜单的行高为20px，我们可以调整为自己想要的高度
+- 一般都是通过自己的样式去覆盖
+
+```html
+<!--navbar的z-index为1000-->
+    <nav class="navbar navbar-my navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <!--汉堡菜单-->
+                <!--展开和收起data-toggle="collapse"-->
+                <!--切换目标data-target="#bs-example-navbar-collapse-1"-->
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#nav-list" aria-expanded="false">
+                    <!--screen readonly-->
+                    <span class="sr-only">切换菜单</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <i class="icon-icon"></i>
+                    <i class="icon-logo"></i>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" id="nav-list">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">我要投资</a></li>
+                    <li><a href="#">我要借款</a></li>
+                    <li><a href="#">平台介绍</a></li>
+                    <li><a href="#">新手专区</a></li>
+                    <li><a href="#">最新动态</a></li>
+                    <li><a href="#">微论坛</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right hidden-sm">
+                    <li><a href="#">个人中心</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+```
+
+```css
+/*模拟navbar-default，重写了navbar-my的样式*/
+.navbar-my {
+    background-color: #fff;
+    border-color: #f5f5f5;
+    margin-bottom: 0;
+}
+
+.navbar-my .navbar-brand {
+    color: #777;
+    height: 80px;
+}
+
+.navbar-my .navbar-brand:hover,
+.navbar-my .navbar-brand:focus {
+    color: #5e5e5e;
+    background-color: transparent;
+}
+
+.navbar-my .navbar-text {
+    color: #777;
+}
+
+.navbar-my .navbar-nav > li > a {
+    color: #777;
+    line-height: 48px;
+    font-size: 14px;
+}
+/*设置当鼠标悬停或元素获得焦点的时候，a链接的样式为下边框2px红色，背景色为transparent透明色*/
+.navbar-my .navbar-nav > li > a:hover,
+.navbar-my .navbar-nav > li > a:focus {
+    color: #333;
+    background-color: transparent;
+    border-bottom: 2px solid #e92322;
+}
+
+.navbar-my .navbar-nav > .active > a,
+.navbar-my .navbar-nav > .active > a:hover,
+.navbar-my .navbar-nav > .active > a:focus {
+    color: #555;
+    background-color: transparent;
+    border-bottom: 2px solid #e92322;
+}
+
+.navbar-my .navbar-nav > .disabled > a,
+.navbar-my .navbar-nav > .disabled > a:hover,
+.navbar-my .navbar-nav > .disabled > a:focus {
+    color: #ccc;
+    background-color: transparent;
+}
+
+.navbar-my .navbar-nav > .open > a,
+.navbar-my .navbar-nav > .open > a:hover,
+.navbar-my .navbar-nav > .open > a:focus {
+    color: #555;
+    background-color: #e7e7e7;
+}
+
+@media (max-width: 767px) {
+    .navbar-my .navbar-nav .open .dropdown-menu > li > a {
+        color: #777;
+    }
+
+    .navbar-my .navbar-nav .open .dropdown-menu > li > a:hover,
+    .navbar-my .navbar-nav .open .dropdown-menu > li > a:focus {
+        color: #333;
+        background-color: transparent;
+    }
+
+    .navbar-my .navbar-nav .open .dropdown-menu > .active > a,
+    .navbar-my .navbar-nav .open .dropdown-menu > .active > a:hover,
+    .navbar-my .navbar-nav .open .dropdown-menu > .active > a:focus {
+        color: #555;
+        background-color: #e7e7e7;
+    }
+
+    .navbar-my .navbar-nav .open .dropdown-menu > .disabled > a,
+    .navbar-my .navbar-nav .open .dropdown-menu > .disabled > a:hover,
+    .navbar-my .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+        color: #ccc;
+        background-color: transparent;
+    }
+}
+
+.navbar-my .navbar-toggle {
+    border-color: #ddd;
+    margin-top: 23px;
+    margin-bottom: 23px;
+}
+
+.navbar-my .navbar-toggle:hover,
+.navbar-my .navbar-toggle:focus {
+    background-color: #ddd;
+}
+
+.navbar-my .navbar-toggle .icon-bar {
+    background-color: #888;
+}
+
+.navbar-my .navbar-collapse,
+.navbar-my .navbar-form {
+    border-color: #e7e7e7;
+}
+
+.navbar-my .navbar-link {
+    color: #777;
+}
+
+.navbar-my .navbar-link:hover {
+    color: #333;
+}
+
+.navbar-my .btn-link {
+    color: #777;
+}
+
+.navbar-my .btn-link:hover,
+.navbar-my .btn-link:focus {
+    color: #333;
+}
+
+.navbar-my .btn-link[disabled]:hover,
+fieldset[disabled] .navbar-my .btn-link:hover,
+.navbar-my .btn-link[disabled]:focus,
+fieldset[disabled] .navbar-my .btn-link:focus {
+    color: #ccc;
+}
+```
+
+## 5.轮播图
+
+#### 广告轮播
+
+  ![1553829183886](C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\1553829183886.png)
+
+
+
+#### PC端轮播
+
+```js
+# 要求：
+
+//高度固定，图片居中，容器铺满
+
+#   解决：
+在一个较小的屏幕下展示一个超宽的图片，想让图片居中：
+1.背景图 background-size:contain;
+2.position:absolute; left:50%;margin-left:-width/2;(transform:translateX(-50%))
+3.不能使用text-aligin:center;因为图片太大，已经超出了父容器
+<img src="" alt="...">
+-->
+<!--<div class="carousel-caption">
+    标题
+</div>-->
+<!--为了让图片在不同的设备上显示不同尺寸的图片。需要图片自适应-->
+```
+
+```html
+具体实现：
+
+<!--
+需求：高度固定，图片居中，容器铺满
+怎么设置不同图片：使用css选择器来设置不太好（html内容动态改变不利于维护）
+-->
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="item active">
+            <a href="#" class="pc_imgBox" style="background-image: url(../images/slide_01_2000x410.jpg)"></a>
+        </div>
+        <div class="item">
+            <a href="#" class="pc_imgBox" style="background-image: url(../images/slide_02_2000x410.jpg)"></a>
+        </div>
+        <div class="item">
+            <a href="#" class="pc_imgBox" style="background-image: url(../images/slide_03_2000x410.jpg)"></a>
+        </div>
+        <div class="item">
+            <a href="#" class="pc_imgBox" style="background-image: url(../images/slide_04_2000x410.jpg)"></a>
+        </div>
+    </div>
+    <a class="left carousel-control" href="#carousel-example-generic"  data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+</div>
+css文件：
+```
+
+```js
+/*  .pc_imgBox{
+            display: block;
+            height: 400px;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    */    
+```
+
+#### 移动端轮播
+
+```js
+#需求：
+//宽度自适应，高度自动变化
+
+#解决
+```
+
+```html
+<!--
+需求：宽度自适应，高度自动变化
+-->
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="item active">
+            <a href="#" class="m_imgBox"><img src="../images/slide_01_640x340.jpg" alt=""></a>
+        </div>
+        <div class="item">
+            <a href="#" class="m_imgBox"><img src="../images/slide_02_640x340.jpg" alt=""></a>
+        </div>
+        <div class="item">
+            <a href="#" class="m_imgBox"><img src="../images/slide_03_640x340.jpg" alt=""></a>
+        </div>
+        <div class="item">
+            <a href="#" class="m_imgBox"><img src="../images/slide_04_640x340.jpg" alt=""></a>
+        </div>
+    </div>
+    <a class="left carousel-control" href="#carousel-example-generic"  data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+</div>
+```
+
+```js
+ /*
+ .m_imgBox{
+            display: block;
+            width: 100%;
+        }
+  .m_imgBox img{
+            display: block;
+            width: 100%;
+        }
+ */
+```
+
+#### 综合移动端和PC端（响应式）
+
+```html
+<!--广告轮播-->
+<section id="main-ad" class="carousel slide" data-ride="carousel">
+    <!-- Indicators 活动指示器 小点-->
+    <ol class="carousel-indicators">
+        <li data-target="#main-ad" data-slide-to="0" class="active"></li>
+        <li data-target="#main-ad" data-slide-to="1"></li>
+        <li data-target="#main-ad" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides 轮播项-->
+    <div class="carousel-inner" role="listbox">
+        <div class="item active" data-img-lg="imgs/slide_01_2000x410.jpg" data-img-xs="imgs/slide_01_640x340.jpg">
+            <!--
+            在一个较小的屏幕下展示一个超宽的图片，想让图片居中：
+            1.背景图 background-size:contain;
+            2.position:absolute; left:50%;margin-left:-width/2;(transform:translateX(-50%))
+            3.不能使用text-aligin:center;因为图片太大，已经超出了父容器
+            <img src="" alt="...">
+            -->
+            <!--<div class="carousel-caption">
+                标题
+            </div>-->
+            <!--为了让图片在不同的设备上显示不同尺寸的图片。需要图片自适应-->
+        </div>
+        <div class="item" data-img-lg="imgs/slide_02_2000x410.jpg" data-img-xs="imgs/slide_02_640x340.jpg">
+        </div>
+        <div class="item" data-img-lg="imgs/slide_03_2000x410.jpg" data-img-xs="imgs/slide_03_640x340.jpg">
+        </div>
+
+        <!-- Controls 控制按钮-->
+        <a class="left carousel-control" href="#main-ad" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#main-ad" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</section>
+```
+
+```js
+# 动态判断当前屏幕的大小，根据大小来进行不同的适应
+$(function () {
+    //当文档加载完成才会执行
+    //根据屏幕宽度的变化决定轮播图应该展示什么
+    function resize() {
+        //获取屏幕宽度
+        var windowWidth = $(window).width();
+        //判断屏幕属于大，小屏
+        var isSmallScreen = windowWidth < 768;
+        //小屏
+        $('#main-ad >.carousel-inner > .item').each(function (i, item) {
+            /*
+            * $element.data()
+            * 一个函数，专门用于取元素上的自定义属性（data-xxx）
+            * 函数的参数是我们要取得属性名称(xxx)
+            * */
+            var $item = $(item)
+            var imgSrc = $item.data(isSmallScreen ? 'img-xs' : 'img-lg')
+
+            $item.css('backgroundImage', "url('" + imgSrc + "')"
+            );
+            //我们需要小图时，尺寸等比例变化，所以小图我们使用img方式
+            if (isSmallScreen) {
+                $item.html('<img src="' + imgSrc + '" alt=""/>')
+            } else {
+                $item.empty();
+            }
+
+        })
+        //根据大小为界面上的每一张轮播图设置背景
+    }
+
+    //让windows对象立触发resize
+    $(window).on('resize', resize).trigger('resize')
+
+});
+```
+
+
+
+### 5.1.Bootstrap JS插件使用
+
+- 在一个较小屏幕下展示一个超宽的图片，想让图片居中显示
+  - 背景图
+  - p-a l 50% m-l -width/2
+
+### 5.2.background使用
+
+#### 5.2.1.background-size
+
+- length
+  - 如100px 100px
+- percentage
+  - 如90% 90%
+- cover
+  - 背景图片的较小边放大到目标大小结束
+- contain
+  - 相反
+
+### 5.3.图片响应式
+
+- 目的
+  - 各种终端都需要正常显示图片
+  - 移动端应该使用更小（体积）的图片
+- 实现方式
+
+### 5.4.window resize事件
+
+## 6.网站特性
+
+![1553840181731](C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\1553840181731.png)
+
+有版心，故用.container
+
+超小屏幕隐藏，其他展示：hidden-xs
+
+栅格系统内容的展示使用媒体对象样式
+
+
+
+使用网格系统实现响应式布局
+
+- 小屏幕为2列 .col-xs-6
+- 中屏幕和大屏幕为3列 .col-sm-4
+
+### 6.1.网格系统
+
+### 6.2.媒体对象样式
+
+### 6.3.响应式辅助类型
+
+```
+- hidden-xx
+```
+
+```html
+<!--特色介绍-->
+<!--hidden-xxx 谁隐藏就只隐藏谁，其他的均显示-->
+<section id="produce" class="hidden-xs">
+    <div class="container">
+        <div class="row">
+            <!--屏幕>992px时，占4列，共3列，此时，若屏幕大小为1200以上也会匹配到col-md-4-->
+            <div class="col-sm-6 col-md-4">
+                <a href="#">
+                    <div class="media">
+                        <div class="media-left">
+                            <i class="icon-uniE907"></i>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">支付交易保障</h4>
+                            <p>银联支付全程保证支付安全</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <a href="#">
+                    <div class="media">
+                        <div class="media-left">
+                            <i class="icon-uniE903"></i>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">平台财产安全</h4>
+                            <p>由PICC保驾护航</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <a href="#">
+                    <div class="media">
+                        <div class="media-left">
+                            <i class="icon-uniE901"></i>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">交易安全</h4>
+                            <p>由中国人寿财险对借款人承保</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <a href="#">
+                    <div class="media">
+                        <div class="media-left">
+                            <i class="icon-uniE900"></i>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">安全保障</h4>
+                            <p>独创八层安全保障机制</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <a href="#">
+                    <div class="media">
+                        <div class="media-left">
+                            <i class="icon-uniE904"></i>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">筛选优质资产</h4>
+                            <p>对接上海资信征信系统</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <a href="#">
+                    <div class="media">
+                        <div class="media-left">
+                            <i class="icon-uniE902"></i>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">联合信息发布</h4>
+                            <p>通过路透社共同发布利率指数报告</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+```
+
+```css
+/*特色介绍区域*/
+#produce {
+    padding: 50px 0;
+    border-bottom: 1px solid #c0c0c0;
+}
+
+#produce i {
+    font-size: 34px;
+}
+
+#produce .icon-uniE907::before {
+    content: '\e907';
+}
+
+#produce .icon-uniE903::before {
+    content: '\e903';
+}
+
+#produce .icon-uniE901::before {
+    content: '\e901';
+}
+
+#produce .icon-uniE900::before {
+    content: '\e900';
+}
+
+#produce .icon-uniE904::before {
+    content: '\e907';
+}
+
+#produce .icon-uniE902::before {
+    content: '\e902';
+}
+
+#produce > .container > .row > div {
+    height: 60px;
+    padding: 10px 0 60px 0px;
+}
+
+#produce > .container > .row > div > a {
+    color: #333;
+    text-decoration: none;
+}
+
+#produce > .container > .row > div > a:hover {
+    color: #e92322;
+    text-decoration: none;
+}
+
+/*#produce > .container > .row > div:nth-of-type(2n) {
+    height: 60px;
+    background-color: deeppink;
+}
+
+#produce > .container > .row > div:nth-of-type(2n+1) {
+    height: 60px;
+    background-color: deepskyblue;
+}*/
+
+```
+
+
+
+## 7.预约投标
+
+![1553842450971](C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\1553842450971.png)
+
+### 7.1.pull-left
+
+
+
+### 7.2.pull-right
+
+```html
+<!--立即预约-->
+<section id="book">
+    <div class="container">
+        <p class="pull-left"><i class="icon-uniE906"></i>现在有<span>458</span>人在排队，累计预约交易成功<span>7409</span>次。
+            什么是预约投标？
+            <a href="#">立即预约</a>
+        </p>
+        <!--pull-right 向右浮动-->
+        <!--hidden-xs-->
+        <P class="pull-right hidden-xs hidden-sm"><i class="icon-uniE905"></i><a href="#">微金所企业宣传片</a></P>
+    </div>
+</section>
+```
+
+```css
+/*立即预约区域*/
+#book {
+    border-bottom: 1px solid #c0c0c0;
+    padding: 20px 0;
+}
+
+#book .icon-uniE906::before {
+    content: '\e906';
+    font-size: 14px;
+}
+
+#book .icon-uniE905::before {
+    content: '\e905';
+}
+
+#book > .container > p {
+    /*line-height: 60px;一旦换行，第二行也有行高，*/
+    font-size: 14px;
+    /*bootstrap默认p标签有10px的下外边距*/
+    margin-bottom: 0;
+}
+
+#book > .container .pull-left > span,
+#book > .container .pull-left > a {
+    color: #e92322;
+}
+
+#book > .container .pull-left > a {
+    border-bottom: 1px dashed #e92322;
+}
+
+#book > .container .pull-left > a:hover {
+    text-decoration: none;
+}
+```
+
+
+
+## 8.投资产品
+
+### 8.1.Tab选项卡
+
+```html
+<!-- 页签 -->
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#home" data-toggle="tab">Home</a></li>
+        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+        <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+    </ul>
+    <!--内容-->
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div class="tab-pane active" id="home">1</div>
+        <div role="tabpanel" class="tab-pane" id="profile">2</div>
+        <div role="tabpanel" class="tab-pane" id="messages">3</div>
+        <div role="tabpanel" class="tab-pane" id="settings">4</div>
+    </div>
+```
+
+
+
+代码：
+
+```html
+<ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#tab_01" aria-controls="tab_01" role="tab"
+                                              data-toggle="tab">特别推荐</a>
+    </li>
+    <li role="presentation"><a href="#tab_02" aria-controls="tab_02" role="tab"
+                               data-toggle="tab">微投资</a>
+    </li>
+    <li role="presentation"><a href="#tab_03" aria-controls="tab_03" role="tab"
+                               data-toggle="tab">微小宝</a></li>
+    <li role="presentation"><a href="#tab_04" aria-controls="tab_04" role="tab"
+                               data-toggle="tab">微消费</a></li>
+    <li role="presentation"><a href="#tab_04" aria-controls="tab_04" role="tab"
+                               data-toggle="tab">微增利</a></li>
+    <li role="presentation"><a href="#tab_04" aria-controls="tab_04" role="tab"
+                               data-toggle="tab">微金宝</a></li>
+    <li role="presentation"><a href="#tab_04" aria-controls="tab_04" role="tab"
+                               data-toggle="tab">微转让</a></li>
+    <li class="pull-right"><a href="#">更多</a></li>
+</ul>
+
+<!-- Tab panes 选项卡内容-->
+<!--bootstrap中可以设置淡入淡出：.fade类和.fade .in-->
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane fade in active" id="tab_01">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                1
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                2
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                3
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                4
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                5
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4">
+               6
+            </div>
+        </div>
+    </div>
+```
+
+#### 选项卡内容
+
+```html
+<div class="panel panel-my active">
+                            <div class="panel-heading">
+                                <p><strong>8</strong><sub>%</sub><br>
+                                    <span>年利率</span>
+                                </p>
+                            </div>
+                            <div class="panel-body">
+                                <h5>新手体验表0605期</h5>
+                                <div class="row">
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-left">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <p>起步价</p>
+                                        <!--strong sub 具有语义-->
+                                        <p><strong>1000.00</strong><sub>万</sub></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+```
+
+```css
+.panel-my {
+    border: 0;
+    border-radius: 0;
+    box-shadow: 1px 1px 5px #ccc;
+}
+
+.panel-my > .panel-heading strong,
+.panel-my.disabled > .panel-heading strong {
+    font-size: 36px;
+    color: #e92322;
+}
+
+.panel-my > .panel-heading span,
+.panel-my.disabled > .panel-heading span {
+    font-size: 10px;
+    color: #222;
+}
+.panel-my.active > .panel-heading strong {
+    color: #fff;
+}
+.panel-my.active > .panel-heading span {
+    color: #fff;
+}
+.panel-my.active {
+    background-color: #e92322;
+    color: #fff;
+}
+
+.panel-my.active::before {
+    content: '\e915';
+    font-family: myfont;
+    position: absolute;
+    font-size: 50px;
+    top: -13px;
+    left: 12px;
+}
+
+.panel-my.active .panel-heading {
+    color: #fff;
+}
+
+.panel-my.disabled {
+    background-color: #e0e0e0;
+}
+
+.panel-my > .panel-heading {
+    color: #333;
+    /* background-color: #f5f5f5;
+     border-color: #ddd;*/
+    float: right;
+    width: 120px;
+    height: 150px;
+    border-left: 1px dashed #c0c0c0;
+    text-align: center;
+    position: relative;
+    padding: 45px 0 35px;
+}
+
+.panel-my > .panel-heading::before,
+.panel-my > .panel-heading::after {
+    content: ' ';
+    width: 16px;
+    height: 16px;
+    /*只要比50%大，都为圆，因为饱和了*/
+    border-radius: 8px;
+    background-color: #f0f0f0;
+    position: absolute;
+}
+
+.panel-my > .panel-heading::before {
+    top: -8px;
+    left: -8px;
+}ss
+
+.panel-my > .panel-heading::after {
+    bottom: -8px;
+    left: -8px;
+    /*box-shadow是从左上方照射的，方向设为0，则从上方照射，故下侧看不到,而且必须为内阴影*/
+    box-shadow: 0 2px 1px #ccc inset;
+}
+
+.panel-my > .panel-body {
+    margin-right: 120px;
+    height: 150px;
+
+}
+
+.panel-my > .panel-heading + .panel-collapse > .panel-body {
+    border-top-color: #ddd;
+}
+
+.panel-my > .panel-heading .badge {
+    color: #f5f5f5;
+    background-color: #333;
+}
+```
+
+
+
+### 8.2.网格系统
+
+
+
+### 8.3.::before
+
+
+
+### 8.4.::after
+
+
+
+### 8.5.tooltip插件
+
+jquery在追加tooltip元素的时候，会把元素与元素之间的空格（多个空格默认只显示一个空格，这个空格的宽度为一个font-size）删除，然后替换掉，这时我么可以设置父级元素的font-size为0，让空格一开始就没有，然后再设置各个子元素的font-size
+
+即可；
+
+标签横向滚动：
+
+需要设置父级ul的宽度为各个子li的宽度+父级的padding-left
+
+父级ul的包裹容器ul-wrapper设置overflow：scroll
+
+```html
+<!--产品推荐-->
+<section id="products">
+    <div class="container">
+        <!-- Nav tabs选项卡标题 -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#tab_01" aria-controls="tab_01" role="tab"
+                                                      data-toggle="tab">特别推荐</a>
+            </li>
+            <li role="presentation"><a href="#tab_02" aria-controls="tab_02" role="tab"
+                                       data-toggle="tab">微投资</a>
+            </li>
+            <li role="presentation"><a href="#tab_03" aria-controls="tab_03" role="tab"
+                                       data-toggle="tab">微小宝</a></li>
+            <li role="presentation"><a href="#tab_04" aria-controls="tab_04" role="tab"
+                                       data-toggle="tab">微消费</a></li>
+            <li role="presentation"><a href="#tab_04" aria-controls="tab_04" role="tab"
+                                       data-toggle="tab">微增利</a></li>
+            <li role="presentation"><a href="#tab_04" aria-controls="tab_04" role="tab"
+                                       data-toggle="tab">微金宝</a></li>
+            <li role="presentation"><a href="#tab_04" aria-controls="tab_04" role="tab"
+                                       data-toggle="tab">微转让</a></li>
+            <li class="pull-right"><a href="#">更多</a></li>
+        </ul>
+        <!-- Tab panes 选项卡内容-->
+        <!--bootstrap中可以设置淡入淡出：.fade类和.fade .in-->
+        <div class="tab-content">
+            <div class="tab-pane active" id="product_nav01">
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <a href="#" class="product_box active">
+                        <div class="pro_right">
+                            <p><b>8</b><sub>%</sub></p>
+                            <p>年利率</p>
+                        </div>
+                        <div class="pro_left">
+                            <h3 class="text-center">新手体验标1002期</h3>
+                            <div class="col-xs-6">
+                                <p>起投金额(元)</p>
+                                <p>0.01万</p>
+                            </div>
+                            <div class="col-xs-6 text-right">
+                                <p>起投金额(元)</p>
+                                <p>0.01万</p>
+                            </div>
+                            <div class="col-xs-6">
+                                <p>起投金额(元)</p>
+                                <p>0.01万</p>
+                            </div>
+                            <div class="col-xs-6 text-right">
+                                <p>起投金额(元)</p>
+                                <p>0.01万</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <a href="#" class="product_box">
+                        <div class="pro_right">
+                            <div class="tips">
+                                <span data-toggle="tooltip" data-placement="top" title="微金宝" class="red">微</span>
+                                <span data-toggle="tooltip" data-placement="bottom" title="河南省" class="green">豫</span>
+                            </div>
+                            <p><b>8</b><sub>%</sub></p>
+                            <p>年利率</p>
+                        </div>
+                        <div class="pro_left">
+                            <h3 class="text-center">新手体验标1002期</h3>
+                            <div class="col-xs-6">
+                                <p>起投金额(元)</p>
+                                <p>0.01万</p>
+                            </div>
+                            <div class="col-xs-6 text-right">
+                                <p>起投金额(元)</p>
+                                <p>0.01万</p>
+                            </div>
+                            <div class="col-xs-6">
+                                <p>起投金额(元)</p>
+                                <p>0.01万</p>
+                            </div>
+                            <div class="col-xs-6 text-right">
+                                <p>起投金额(元)</p>
+                                <p>0.01万</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <a href="#" class="product_box">
+                        <div class="pro_right">
+                            <p><b>8</b><sub>%</sub></p>
+                            <p>年利率</p>
+                        </div>
+                        <div class="pro_left">
+                            <h3 class="text-center">新手体验标1002期</h3>
+                            <div class="col-xs-6">
+                                <p>起投金额(元)</p>
+                                <p>0.01万</p>
+                            </div>
+                            <div class="col-xs-6 text-right">
+                                <p>起投金额(元)</p>
+                                <p>0.01万</p>
+                            </div>
+                            <div class="col-xs-6">
+                                <p>起投金额(元)</p>
+                                <p>0.01万</p>
+                            </div>
+                            <div class="col-xs-6 text-right">
+                                <p>起投金额(元)</p>
+                                <p>0.01万</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <a href="#" class="product_box">
+                        <div class="pro_right">
+                            <p><b>8</b><sub>%</sub></p>
+                            <p>年利率</p>
+                        </div>
+                        <div class="pro_left">
+                            <h3 class="text-center">新手体验标1002期</h3>
+                            <div class="col-xs-6">
+                                <p>起投金额(元)</p>
+                                <p>0.01万</p>
+                            </div>
+                            <div class="col-xs-6 text-right">
+                                <p>起投金额(元)</p>
+                                <p>0.01万</p>
+                            </div>
+                            <div class="col-xs-6">
+                                <p>起投金额(元)</p>
+                                <p>0.01万</p>
+                            </div>
+                            <div class="col-xs-6 text-right">
+                                <p>起投金额(元)</p>
+                                <p>0.01万</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="tab-pane" id="product_nav02">2</div>
+            <div class="tab-pane" id="product_nav03">3</div>
+            <div class="tab-pane" id="product_nav04">4</div>
+            <div class="tab-pane" id="product_nav05">5</div>
+            <div class="tab-pane" id="product_nav06">6</div>
+            <div class="tab-pane" id="product_nav07">7</div>
+        </div>
+</section>
+```
+
+```css
+.product_box{
+    display: block;
+    width: 100%;
+    height: 150px;
+    background: #fff;
+    box-shadow: 3px 3px 5px #d8d8d8;
+    margin-top: 30px;
+    color: #666;
+}
+.product_box:hover{
+    color: #666;
+}
+.product_box.active{
+    background: #e92322;
+    color: #fff;
+    position: relative;
+}
+/*:  ::  css3规范 :伪类  :: 伪元素*/
+.product_box.active::before{
+    content: "\e915";
+    position: absolute;
+    left: 0;
+    top: -7px;
+    font-family: wjs;
+    font-size: 33px;
+}
+
+.product_box .pro_left{
+    overflow: hidden;
+}
+.product_box .pro_left h3{
+    font-size: 16px;
+    margin-top: 10px;
+}
+.product_box .pro_left div{
+    font-size: 12px;
+}
+
+/*浮动元素优先 两栏自适应注意*/
+.product_box .pro_right{
+    float: right;
+    width: 80px;
+    height: 150px;
+    text-align: center;
+    border-left: 1px dashed #ccc;
+    position: relative;
+}
+.product_box .pro_right::before,
+.product_box .pro_right::after{
+    content: "";
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 6px;
+    background: #f5f5f5;
+    left: -6px;
+}
+.product_box .pro_right::before{
+    top: -6px;
+    /*
+    参数1：x轴的偏移
+    参数2：y轴的偏移
+    参数3：阴影的模糊的
+    参数4：阴影的延伸
+    参数5：阴影的颜色
+    参数6：内阴影
+    */
+    box-shadow: 0 -2px 2px #d8d8d8 inset;
+}
+.product_box .pro_right::after{
+    bottom: -6px;
+    box-shadow: 0 2px 2px #d8d8d8 inset;
+}
+.product_box .pro_right .tips{
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 100%;
+}
+.product_box .pro_right .tips span{
+    width: 16px;
+    height: 16px;
+    text-align: center;
+    line-height: 16px;
+    border-width: 1px;
+    border-style: solid;
+    display: inline-block;
+}
+.product_box .pro_right .tips .red{
+    color: red;
+    border-color: red;
+}
+.product_box .pro_right .tips .green{
+    color: green;
+    border-color: green;
+}
+
+    /*
+    找到P元素，通过P找到父元素，通过父元素找子元素当中类型为P的，然再去找第几个。
+    p:first-of-type
+    p:last-of-type
+    p:nth-of-type(n)
+    p:nth-last-of-type(n)
+    如果使用的是child;
+    p:first-child
+    找到P元素,通过P找到父元素，通过父元素找所有的子元素，找第一个元素，匹配判断类型(如果不是无效选择器)
+    */
+.product_box .pro_right p:first-of-type{
+    margin-top: 25px;
+    color: #e92322;
+}
+.product_box.active .pro_right p:first-of-type{
+    color: #fff;
+}
+.product_box .pro_right p:first-of-type b{
+    font-size: 48px;
+}
+.product_box .pro_right p:first-of-type sub{
+    bottom: 0;
+    font-size: 12px;
+}
+.product_box .pro_right p:last-child{}
+```
+
+
+
+## 9.新闻资讯
+
+```html
+<!--新闻-->
+<!-- 新闻列表 -->
+  <section id="news">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-2 col-sm-offset-3">
+          <div class="news-title">全部新闻</div>
+        </div>
+        <div class="col-sm-1">
+          <ul class="nav nav-pills nav-stacked">
+            <li role="presentation" class="active"><a data-title="全部新闻" href="#news01" data-toggle="tab" role="tab"><i class="icon-news01"></i></a></li>
+            <li role="presentation"><a data-title="媒体新闻" href="#news02" data-toggle="tab" role="tab"><i class="icon-news02"></i></a></li>
+            <li role="presentation"><a data-title="行业资讯" href="#news03" data-toggle="tab" role="tab"><i class="icon-news03"></i></a></li>
+            <li role="presentation"><a data-title="XXXX" href="#news04" data-toggle="tab" role="tab"><i class="icon-news04"></i></a></li>
+          </ul>
+        </div>
+        <div class="col-sm-6">
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade in active" id="news01">
+              <ul>
+                <li>微金所发钱了，快来抢！！！！！</li>
+                <li>微金所发钱了，快来抢！！！！！</li>
+                <li>微金所发钱了，快来抢！！！！！</li>
+                <li>微金所发钱了，快来抢！！！！！</li>
+              </ul>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="news02">
+              <ul>
+                <li>微金所发钱了，快来抢！！！！！</li>
+                <li>微金所发钱了，快来抢！！！！！</li>
+              </ul>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="news03">
+              <ul>
+                <li>微金所发钱了，快来抢！！！！！</li>
+                <li>微金所发钱了，快来抢！！！！！</li>
+                <li>微金所发钱了，快来抢！！！！！</li>
+                <li>微金所发钱了，快来抢！！！！！</li>
+                <li>微金所发钱了，快来抢！！！！！</li>
+              </ul>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="news04">
+              <ul>
+                <li>微金所发钱了，快来抢！！！！！</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+```
+
+```js
+// a点击注册事件
+  var $newTitle = $('.news-title');
+  $('#news .nav-pills a').on('click', function() {
+    // 获取当前点击元素
+    var $this = $(this);
+    // 获取对应的title值
+    var title = $this.data('title');
+    // 将title设置到相应的位置
+    $newTitle.text(title);
+  });
+```
+
+```css
+/* 新闻 */
+
+#news {
+  padding: 50px 0;
+  border-bottom: 1px solid #c0c0c0;
+}
+
+#news .news-title {
+  padding: 15px 0;
+  font-size: 18px;
+  font-weight: 400;
+  text-align: center;
+  border-bottom: 1px dashed #c0c0c0;
+  position: relative;
+  margin-right: 10px;
+}
+
+#news .news-title::after {
+  content: ' ';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  border: 1px solid #c0c0c0;
+  position: absolute;
+  bottom: -5px;
+  right: -10px;
+}
+
+
+/*#news .nav-pills a i {
+  font-size: 50px;
+}*/
+
+.icon-news01:before {
+  content: "\e90e";
+  font-size: 28px;
+  color: #EAEAEA;
+}
+
+.icon-news02:before {
+  content: "\e90f";
+  font-size: 28px;
+  color: #EAEAEA;
+}
+
+.icon-news03:before {
+  content: "\e910";
+  font-size: 28px;
+  color: #EAEAEA;
+}
+
+.icon-news04:before {
+  content: "\e911";
+  font-size: 28px;
+  color: #EAEAEA;
+}
+
+@media (max-width: 768px) {
+  #news .nav-stacked > li {
+    float: left;
+    margin-right: 20px;
+  }
+}
+```
+
+
+
+### 9.1.Tab选项卡
+
+
+
+### 9.2.响应式偏移
+
+
+
+## 10.合作伙伴
+
+```html
+<!--合作伙伴-->
+<footer class="wjs_partner">
+    <div class="container">
+        <h3 class="text-center">合作伙伴</h3>
+        <ul>
+            <li><a href="#"><span class="wjs_icon wjs_icon_partner01"></span></a></li>
+            <li><a href="#"><span class="wjs_icon wjs_icon_partner02"></span></a></li>
+            <li><a href="#"><span class="wjs_icon wjs_icon_partner03"></span></a></li>
+            <li><a href="#"><span class="wjs_icon wjs_icon_partner04"></span></a></li>
+            <li><a href="#"><span class="wjs_icon wjs_icon_partner05"></span></a></li>
+            <li><a href="#"><span class="wjs_icon wjs_icon_partner06"></span></a></li>
+            <li><a href="#"><span class="wjs_icon wjs_icon_partner07"></span></a></li>
+            <li><a href="#"><span class="wjs_icon wjs_icon_partner08"></span></a></li>
+            <li><a href="#"><span class="wjs_icon wjs_icon_partner09"></span></a></li>
+        </ul>
+    </div>
+</footer>
+```
+
+```css
+/*合作伙伴*/
+
+#hzhb {
+  padding: 30px 0;
+}
+
+#hzhb ul {
+  padding: 0;
+  list-style: none;
+  width: 818px;
+  /*清除浮动*/
+  position: relative;
+  overflow: hidden;
+}
+
+#hzhb ul li {
+  float: left;
+}
+
+#hzhb ul li + li {
+  border-left: 1px dashed #e0e0e0;
+}
+
+#hzhb ul li a {
+  padding: 10px 20px;
+  font-size: 50px;
+  color: #888;
+}
+
+#hzhb ul li a:hover {
+  text-decoration: none;
+}
+
+.icon-uniE930:hover {
+  color: #df3232;
+}
+
+.icon-uniE930:before {
+  content: "\e946";
+}
+
+.icon-uniE92F:hover {
+  color: #e8380d;
+}
+
+.icon-uniE92F:before {
+  content: "\e92f";
+}
+
+.icon-uniE92E:hover {
+  color: #ed6f00;
+}
+
+.icon-uniE92E:before {
+  content: "\e92e";
+}
+
+.icon-uniE92A:hover {
+  color: #159f69;
+}
+
+.icon-uniE92A:before {
+  content: "\e92a";
+}
+
+.icon-uniE929:hover {
+  color: #07569e;
+}
+
+.icon-uniE929:before {
+  content: "\e929";
+}
+
+.icon-uniE931:hover {
+  color: #004098;
+}
+
+.icon-uniE931:before {
+  content: "\e931";
+}
+
+.icon-uniE92C:hover {
+  color: #d32019;
+}
+
+.icon-uniE92C:before {
+  content: "\e92c";
+}
+
+.icon-uniE92B:hover {
+  color: #3eac4a;
+}
+
+.icon-uniE92B:before {
+  content: "\e92b";
+}
+
+.icon-uniE92D:hover {
+  color: #2bb289;
+}
+
+.icon-uniE92D:before {
+  content: "\e92d";
+}
+```
+
+
+
+### 10.1.相邻兄弟选择器
+
+
+
+## 11.登录对话框
+
+### 11.1模态框
+
+```html
+<a href="#" class="btn btn-link btn-sm" data-toggle="modal" data-target="#login_form">登录</a>
+```
+
+```html
+<!-- Modal -->
+  <div class="modal fade" id="login_form" tabindex="-1" role="dialog" aria-labelledby="login_form_title">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="login_form_title">登录</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal">
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+              <div class="col-sm-10">
+                <input type="email" class="form-control" id="inputEmail3" placeholder="请输入邮箱">
+              </div>
+            </div>
+            <div class="form-group-lg">
+              <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+              <div class="col-sm-10">
+                <input type="password" class="form-control" id="inputPassword3" placeholder="请输入密码">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox"> 
+                      Remember me
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">Sign in</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+```
+
+
+
+### 11.2表单样式
+
+
+
+## 12.导航吸顶
+
+### 12.1affix组件
+
+```html
+<nav class="navbar navbar-itcast navbar-static-top" data-spy="affix" data-offset-top="260" data-offset-bottom="200">
+```
+
+
+
+## 13.深度自定义
+
+### 13.1.http://v3.bootcss.com/customize
+
+### 13.2通过 Less 文件修改
+
 # Bootstrap
 
 ## 简介
@@ -1536,2047 +3577,7 @@ HTML 标记相同，但使用 `.nav-pills` 类：
 - [官方文档](http://lesscss.org/)
 - [中文文档](http://lesscss.cn/)
 
-# 微金所项目实战
 
-## 1. 搭建Bootstrap页面骨架及项目目录结构
-
-```
-├─ /weijinsuo/ ··················· 项目所在目录
-└─┬─ /css/ ······················· 我们自己的CSS文件
-  ├─ /font/ ······················ 使用到的字体文件
-  ├─ /img/ ······················· 使用到的图片文件
-  ├─ /js/ ························ 自己写的JS脚步
-  ├─ /lib/ ······················· 从第三方下载回来的库【只用不改】
-  ├─ /favicon.ico ················ 站点图标
-  └─ /index.html ················· 入口文件
-```
-
-### 1.1.约定编码规范
-
-#### 1.1.1.HTML约定
-
-- 在head中引入必要的CSS文件，优先引用第三方的CSS，方便我们自己的样式覆盖
-- 在body末尾引入必要的JS文件，优先引用第三方的JS，注意JS文件之间的依赖关系，比如bootstrap.js依赖jQuery，那就应该先引用jquery.js 然后引用bootstrap.js
-
-#### 1.1.2.CSS约定
-
-- 除了公共级别样式，其余样式全部由 模块前缀
-- 尽量使用 直接子代选择器， 少用间接子代 避免错杀
-
-
-
-### 1.2.HTML5文档结构
-
-```html
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <title>页面标题</title>
-</head>
-<body>
-  
-</body>
-</html>
-```
-
-### 1.3.Viewport设置
-
-```html
-<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
-```
-
-> html中插入视口设置，可以通过emmet __meta:vp__ 插入
-
-### 1.4.浏览器兼容模式
-
-```html
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-```
-
-> html中插入兼容模式设置，可以通过emmet __meta:compat__ 插入
-
-### 1.5.favicon（站点图标）
-
-```html
-<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-```
-
-> html中插入图标链接，可以通过emmet __link:favicon__ 插入
-
-### 1.6.引入相应的第三方文件
-
-```html
-<link rel="stylesheet" href="bootstrap.css">
-<link rel="stylesheet" href="my.css">
-...
-<script src="jquery.js"></script>
-<script src="bootstrap.js"></script>
-<script src="my.js"></script>
-```
-
-### 1.7.在我们默认的样式表中将默认字体设置为：
-
-```css
-body{
-  font-family: "Helvetica Neue", 
-                Helvetica, 
-                Microsoft Yahei, 
-                Hiragino Sans GB, 
-                WenQuanYi Micro Hei, 
-                sans-serif;
-}
-```
-
-## 2.完成页面空结构
-
-> 先划分好页面中的大容器，然后在具体看每一个容器中单独的情况
-
-```html
-<body>
-  <!-- 头部区域 -->
-  <header></header>
-  <!-- /头部区域 -->
-  <!-- 广告轮播 -->
-  <section></section>
-  <!-- /广告轮播 -->
-  <!-- 特色介绍 -->
-  <section></section>
-  <!-- /特色介绍 -->
-  <!-- 立即预约 -->
-  <section></section>
-  <!-- /立即预约 -->
-  <!-- 产品推荐 -->
-  <section></section>
-  <!-- /产品推荐 -->
-  <!-- 新闻列表 -->
-  <section></section>
-  <!-- /新闻列表 -->
-  <!-- 合作伙伴 -->
-  <section></section>
-  <!-- /合作伙伴 -->
-  <!-- 脚注区域 -->
-  <footer></footer>
-  <!-- /脚注区域 -->
-</body>
-```
-
-## 3.头部
-
-![1553769763363](C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\1553769763363.png)
-
-头部主要包含：
-
-#### 构建顶部通栏
-
-1.在中屏幕和大屏幕中显示，即添加.visible-md/.visible-lg类（或添加.hidden-xs/.hidden-sm）
-
-2.有版心，用.container包裹
-
-3.用bootstrap的栅格系统进行布局
-
-有4列：手机微金所、联系方式及服务时间、常见问题、登录注册；
-
-```html
-<header>
-  <div class="topbar"></div>
-</header>
-
-```
-
-##### 3.1.container类
-
-- 用于定义一个固定宽度且居中的版心
-
-```html
-<div class="topbar">
-  <div class="container">
-    <!--
-      此处的代码会显示在一个固定宽度且居中的容器中
-      该容器的宽度会跟随屏幕的变化而变化
-    -->
-  </div>
-</div>
-```
-
-##### 3.2.栅格系统
-
-- Bootstrap中定义了一套响应式的网格系统，
-- 其使用方式就是将一个容器划分成12列，
-- 然后通过col-xx-xx的类名控制每一列的占比
-
-###### 3.2.1.row类
-
-- 因为每一个列默认有一个15px的左右外边距
-- row类的一个作用就是通过左右-15px屏蔽掉这个边距
-
-```html
-<div class="container">
-  <div class="row"></div>
-</div>
-```
-
-###### 3.2.2.col-*\*-\*类
-
-- col-xs-[列数]：在超小屏幕下展示几份
-- col-sm-[列数]：在小屏幕下展示几份
-- col-md-[列数]：在中等屏幕下展示几份
-- col-lg-[列数]：在大屏幕下展示几份
-- __xs__ : 超小屏幕 手机 (<768px)  
-- __sm__ : 小屏幕 平板 (≥768px) 
-- __md__ : 中等屏幕 桌面显示器 (≥992px) 
-- __lg__ : 大屏幕 大桌面显示器 (≥1200px)
-
-```html
-<div class="row">
-  <div class="col-md-2 text-center"></div>
-  <div class="col-md-5 text-center"></div>
-  <div class="col-md-2 text-center"></div>
-  <div class="col-md-3 text-center"></div>
-</div>
-```
-
-> 此处顶部通栏已经被划分成四列
-> text-center的作用就是让内部内容居中显示
-
-##### 3.3.字体图标
-
-```css
-@font-face {
-  font-family: 'itcast';
-  src: url('../font/MiFie-Web-Font.eot') format('embedded-opentype'), url('../font/MiFie-Web-Font.svg') format('svg'), url('../font/MiFie-Web-Font.ttf') format('truetype'), url('../font/MiFie-Web-Font.woff') format('woff');
-}
-
-[class^="icon-"],
-[class*=" icon-"] {
-  /*注意上面选择器中间的空格*/
-  /*我们使用的名为itcast的字体就是上面的@font-face的方式声明的*/
-  font-family: itcast;
-  font-style: normal;
-}
-
-.icon-mobilephone::before{
-  content: '\e908';
-}
-```
-
-```html
-<div class="col-md-2 text-center">
-  <a class="mobile-link" href="#">
-    <i class="icon-mobile"></i>
-    <span>手机微金所</span>
-    <!-- 这里使用的是bootstrap中的字体图标 -->
-    <i class="glyphicon glyphicon-chevron-down"></i>
-    <img src="..." alt="">
-  </a>
-</div>
-```
-
-###### 字体文件格式
-
-- eot : embedded-opentype
-- svg : svg
-- ttf : truetype
-- woff : woff
-
-##### 3.4.hover图片展示
-
-```css
-.mobile-link:hover > img {
-  display: block;
-}
-```
-
-##### 3.5.按钮样式生成
-
-- http://blog.koalite.com/bbg/
-- 可以通过界面生成一个新的按钮样式
-
-```css
-.btn-itcast {
-  color: #ffffff;
-  background-color: #E92322;
-  border-color: #DB3B43;
-}
-
-.btn-itcast:hover,
-.btn-itcast:focus,
-.btn-itcast:active,
-.btn-itcast.active,
-.open .dropdown-toggle.btn-itcast {
-  color: #ffffff;
-  background-color: #E92322;
-  border-color: #DB3B43;
-}
-
-.btn-itcast:active,
-.btn-itcast.active,
-.open .dropdown-toggle.btn-itcast {
-  background-image: none;
-}
-
-.btn-itcast.disabled,
-.btn-itcast[disabled],
-fieldset[disabled] .btn-itcast,
-.btn-itcast.disabled:hover,
-.btn-itcast[disabled]:hover,
-fieldset[disabled] .btn-itcast:hover,
-.btn-itcast.disabled:focus,
-.btn-itcast[disabled]:focus,
-fieldset[disabled] .btn-itcast:focus,
-.btn-itcast.disabled:active,
-.btn-itcast[disabled]:active,
-fieldset[disabled] .btn-itcast:active,
-.btn-itcast.disabled.active,
-.btn-itcast[disabled].active,
-fieldset[disabled] .btn-itcast.active {
-  background-color: #E92322;
-  border-color: #DB3B43;
-}
-
-.btn-itcast .badge {
-  color: #E92322;
-  background-color: #ffffff;
-}
-```
-
-##### 3.6小屏幕隐藏
-
-```html
-<div class="topbar hidden-xs hidden-sm"></div>
-```
-
-或者
-
-```html
-<div class="topbar visible-md visible-lg"></div>
-```
-
-- __hidden-xx__ : 在某种屏幕下隐藏 
-- __visible-xx__ : 在某种屏幕尺寸下显示
-  - visible-xx-xx：最后一个xx是决定显示时的display到底是啥
-
-```html
-<div class="topbar visible-md visible-lg">
-        <!--固定宽度且居中-->
-        <div class="container">
-            <div class="row">
-                <div class="col-md-2 text-center">
-                    <a class="icon- mobile_link" href="#">
-                        <!--第三方字体图标-->
-                        <i class="icon-mobilephone"></i>
-                        <!--bootstrap中的字体图标-->
-                        <span>手机微金所</span>
-                        <i class="glyphicon glyphicon-chevron-down"></i>
-                        <img src="imgs/c_06.jpg" alt="扫一扫">
-                    </a>
-                </div>
-                <!--字体居中-->
-                <div class="col-md-5 text-center">
-                    <i class="icon-telephone"></i>
-                    <span> 4006-89-4006（服务时间：9:00-21:00）</span>
-                </div>
-                <div class="col-md-2 text-center">
-                    <a href="#">常见问题</a>
-                    <a href="#">财富登录</a>
-                </div>
-                <div class="col-md-3 text-center">
-                    <a class="btn btn-my btn-sm">免费注册</a>
-                    <a class="btn btn-link btn-sm">登录</a>
-                </div>
-            </div>
-        </div>
-    </div>
-```
-
-css样式
-
-```css
-/*样式都用ID*/
-/*头部区域*/
-#header {
-    /*height: 200px;*/
-}
-
-/*尽可能使用直接子代选择器*/
-#header > .topbar {
-    height: 40px;
-    border-bottom: 1px solid #c0c0c0;
-    line-height: 40px;
-}
-
-
-#header > .topbar > .container > .row > div {
-    color: #888;
-    font-size: 12px;
-    height: 40px;
-}
-
-/*+选择器，找满足这个条件，后面所有的兄弟元素*/
-#header > .topbar > .container > .row > div + div {
-    border-left: 1px solid #c0c0c0;
-}
-
-#header .mobile_link {
-    font-size: 12px;
-    color: #888;
-    position: relative;
-}
-
-#header .mobile_link:hover {
-    font-size: 12px;
-    text-decoration: none;
-
-}
-
-#header .mobile_link > img {
-    display: none;
-    position: absolute;
-    top: 12px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 9999;
-}
-
-#header .mobile_link:hover > img {
-    display: block;
-}
-
-#header .btn-my {
-    color: #fff;
-}
-
-#header .icon-icon {
-    font-size: 50px;
-    color: #e92322;
-    line-height: 50px;
-    vertical-align: middle;
-}
-
-#header .icon-logo {
-    font-size: 32px;
-    color: #333;
-    line-height: 50px;
-    vertical-align: middle;
-}
-
-/*头部区域*/
-
-/*section {
-    height: 200px;
-    background-color: #fff;
-}
-
-section:nth-of-type(2n) {
-    background-color: palegreen;
-}
-
-!*选择1，3，5，7，9...*!
-section:nth-of-type(2n+1) {
-    background-color: paleturquoise;
-}*/
-
-```
-
-### 导航通栏
-
-- 在使用了boostrap过后，大多数界面元素都是通过bootstrap提供好的界面组件修改得来
-
-```html
-<nav class="navbar navbar-itcast navbar-static-top">
-  <div class="container">
-    <div class="navbar-header">
-      <button id="btn" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav_list" aria-expanded="false">
-        <span class="sr-only">切换菜单</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">
-        <i class="icon-icon"></i>
-        <i class="icon-logo"></i>
-      </a>
-    </div>
-    <div id="nav_list" class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">我要投资</a></li>
-        <li><a href="#">我要借款</a></li>
-        <li><a href="#">平台介绍</a></li>
-        <li><a href="#">新手专区</a></li>
-        <li><a href="#">最新动态</a></li>
-        <li><a href="#">微论坛</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right hidden-sm">
-        <li><a href="#">个人中心</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-```
-
-1.在超小屏幕的时候隐藏，由于使用的时bootstrap的导航组件，可利用组件的特性来实现
-
-2.在中屏幕和大屏幕中显示**个人中心**，其他情况下隐藏
-
-3.有版心，用.container包裹
-
-4.使用navbar来实现导航条，自定义了一个navbar-my样式（改变来了背景色为#fff白色，），导航条静止在顶部（navbar-static-top）
-
-##### 4.1.Bootstrap扩展
-
-- 通过bootstrap文档对导航条样式的设置发现，其实本身是有一个类似于主题的概念
-- navbar-default：默认的外观
-- navbar-inverse：暗色背景的样式
-- 所以我们希望可以通过自定义一套完整的风格：
-  - navbar-itcast
-
-```css
-.navbar-itcast{
-  ...
-}
-...具体代码参考navbar-default实现即可
-
-```
-
-##### 4.2.品牌logo
-
-- 仍然使用字体图标
-
-##### 4.3.菜单行高调整
-
-- 默认样式中菜单的行高为20px，我们可以调整为自己想要的高度
-- 一般都是通过自己的样式去覆盖
-
-```html
-<!--navbar的z-index为1000-->
-    <nav class="navbar navbar-my navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
-                <!--汉堡菜单-->
-                <!--展开和收起data-toggle="collapse"-->
-                <!--切换目标data-target="#bs-example-navbar-collapse-1"-->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target="#nav-list" aria-expanded="false">
-                    <!--screen readonly-->
-                    <span class="sr-only">切换菜单</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">
-                    <i class="icon-icon"></i>
-                    <i class="icon-logo"></i>
-                </a>
-            </div>
-            <div class="collapse navbar-collapse" id="nav-list">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">我要投资</a></li>
-                    <li><a href="#">我要借款</a></li>
-                    <li><a href="#">平台介绍</a></li>
-                    <li><a href="#">新手专区</a></li>
-                    <li><a href="#">最新动态</a></li>
-                    <li><a href="#">微论坛</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right hidden-sm">
-                    <li><a href="#">个人中心</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-```
-
-```css
-/*模拟navbar-default，重写了navbar-my的样式*/
-.navbar-my {
-    background-color: #fff;
-    border-color: #f5f5f5;
-    margin-bottom: 0;
-}
-
-.navbar-my .navbar-brand {
-    color: #777;
-    height: 80px;
-}
-
-.navbar-my .navbar-brand:hover,
-.navbar-my .navbar-brand:focus {
-    color: #5e5e5e;
-    background-color: transparent;
-}
-
-.navbar-my .navbar-text {
-    color: #777;
-}
-
-.navbar-my .navbar-nav > li > a {
-    color: #777;
-    line-height: 48px;
-    font-size: 14px;
-}
-/*设置当鼠标悬停或元素获得焦点的时候，a链接的样式为下边框2px红色，背景色为transparent透明色*/
-.navbar-my .navbar-nav > li > a:hover,
-.navbar-my .navbar-nav > li > a:focus {
-    color: #333;
-    background-color: transparent;
-    border-bottom: 2px solid #e92322;
-}
-
-.navbar-my .navbar-nav > .active > a,
-.navbar-my .navbar-nav > .active > a:hover,
-.navbar-my .navbar-nav > .active > a:focus {
-    color: #555;
-    background-color: transparent;
-    border-bottom: 2px solid #e92322;
-}
-
-.navbar-my .navbar-nav > .disabled > a,
-.navbar-my .navbar-nav > .disabled > a:hover,
-.navbar-my .navbar-nav > .disabled > a:focus {
-    color: #ccc;
-    background-color: transparent;
-}
-
-.navbar-my .navbar-nav > .open > a,
-.navbar-my .navbar-nav > .open > a:hover,
-.navbar-my .navbar-nav > .open > a:focus {
-    color: #555;
-    background-color: #e7e7e7;
-}
-
-@media (max-width: 767px) {
-    .navbar-my .navbar-nav .open .dropdown-menu > li > a {
-        color: #777;
-    }
-
-    .navbar-my .navbar-nav .open .dropdown-menu > li > a:hover,
-    .navbar-my .navbar-nav .open .dropdown-menu > li > a:focus {
-        color: #333;
-        background-color: transparent;
-    }
-
-    .navbar-my .navbar-nav .open .dropdown-menu > .active > a,
-    .navbar-my .navbar-nav .open .dropdown-menu > .active > a:hover,
-    .navbar-my .navbar-nav .open .dropdown-menu > .active > a:focus {
-        color: #555;
-        background-color: #e7e7e7;
-    }
-
-    .navbar-my .navbar-nav .open .dropdown-menu > .disabled > a,
-    .navbar-my .navbar-nav .open .dropdown-menu > .disabled > a:hover,
-    .navbar-my .navbar-nav .open .dropdown-menu > .disabled > a:focus {
-        color: #ccc;
-        background-color: transparent;
-    }
-}
-
-.navbar-my .navbar-toggle {
-    border-color: #ddd;
-    margin-top: 23px;
-    margin-bottom: 23px;
-}
-
-.navbar-my .navbar-toggle:hover,
-.navbar-my .navbar-toggle:focus {
-    background-color: #ddd;
-}
-
-.navbar-my .navbar-toggle .icon-bar {
-    background-color: #888;
-}
-
-.navbar-my .navbar-collapse,
-.navbar-my .navbar-form {
-    border-color: #e7e7e7;
-}
-
-.navbar-my .navbar-link {
-    color: #777;
-}
-
-.navbar-my .navbar-link:hover {
-    color: #333;
-}
-
-.navbar-my .btn-link {
-    color: #777;
-}
-
-.navbar-my .btn-link:hover,
-.navbar-my .btn-link:focus {
-    color: #333;
-}
-
-.navbar-my .btn-link[disabled]:hover,
-fieldset[disabled] .navbar-my .btn-link:hover,
-.navbar-my .btn-link[disabled]:focus,
-fieldset[disabled] .navbar-my .btn-link:focus {
-    color: #ccc;
-}
-```
-
-## 5.轮播图
-
-#### 广告轮播
-
-  ![1553829183886](C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\1553829183886.png)
-
-
-
-#### PC端轮播
-
-```js
-
-# 要求：
-
-//高度固定，图片居中，容器铺满
-
-#   解决：
-在一个较小的屏幕下展示一个超宽的图片，想让图片居中：
-1.背景图 background-size:contain;
-2.position:absolute; left:50%;margin-left:-width/2;(transform:translateX(-50%))
-3.不能使用text-aligin:center;因为图片太大，已经超出了父容器
-<img src="" alt="...">
--->
-<!--<div class="carousel-caption">
-    标题
-</div>-->
-<!--为了让图片在不同的设备上显示不同尺寸的图片。需要图片自适应-->
-```
-
-```html
-具体实现：
-
-<!--
-需求：高度固定，图片居中，容器铺满
-怎么设置不同图片：使用css选择器来设置不太好（html内容动态改变不利于维护）
--->
-<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="3"></li>
-    </ol>
-    <div class="carousel-inner">
-        <div class="item active">
-            <a href="#" class="pc_imgBox" style="background-image: url(../images/slide_01_2000x410.jpg)"></a>
-        </div>
-        <div class="item">
-            <a href="#" class="pc_imgBox" style="background-image: url(../images/slide_02_2000x410.jpg)"></a>
-        </div>
-        <div class="item">
-            <a href="#" class="pc_imgBox" style="background-image: url(../images/slide_03_2000x410.jpg)"></a>
-        </div>
-        <div class="item">
-            <a href="#" class="pc_imgBox" style="background-image: url(../images/slide_04_2000x410.jpg)"></a>
-        </div>
-    </div>
-    <a class="left carousel-control" href="#carousel-example-generic"  data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left"></span>
-    </a>
-    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right"></span>
-    </a>
-</div>
-css文件：
-```
-
-```js
-/*  .pc_imgBox{
-            display: block;
-            height: 400px;
-            width: 100%;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-    */    
-```
-
-#### 移动端轮播
-
-```js
-#需求：
-//宽度自适应，高度自动变化
-
-#解决
-```
-
-```html
-<!--
-需求：宽度自适应，高度自动变化
--->
-<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="3"></li>
-    </ol>
-    <div class="carousel-inner">
-        <div class="item active">
-            <a href="#" class="m_imgBox"><img src="../images/slide_01_640x340.jpg" alt=""></a>
-        </div>
-        <div class="item">
-            <a href="#" class="m_imgBox"><img src="../images/slide_02_640x340.jpg" alt=""></a>
-        </div>
-        <div class="item">
-            <a href="#" class="m_imgBox"><img src="../images/slide_03_640x340.jpg" alt=""></a>
-        </div>
-        <div class="item">
-            <a href="#" class="m_imgBox"><img src="../images/slide_04_640x340.jpg" alt=""></a>
-        </div>
-    </div>
-    <a class="left carousel-control" href="#carousel-example-generic"  data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left"></span>
-    </a>
-    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right"></span>
-    </a>
-</div>
-```
-
-```js
- /*
- .m_imgBox{
-            display: block;
-            width: 100%;
-        }
-  .m_imgBox img{
-            display: block;
-            width: 100%;
-        }
- */
-```
-
-#### 综合移动端和PC端（响应式）
-
-```html
-<!--广告轮播-->
-<section id="main-ad" class="carousel slide" data-ride="carousel">
-    <!-- Indicators 活动指示器 小点-->
-    <ol class="carousel-indicators">
-        <li data-target="#main-ad" data-slide-to="0" class="active"></li>
-        <li data-target="#main-ad" data-slide-to="1"></li>
-        <li data-target="#main-ad" data-slide-to="2"></li>
-    </ol>
-
-    <!-- Wrapper for slides 轮播项-->
-    <div class="carousel-inner" role="listbox">
-        <div class="item active" data-img-lg="imgs/slide_01_2000x410.jpg" data-img-xs="imgs/slide_01_640x340.jpg">
-            <!--
-            在一个较小的屏幕下展示一个超宽的图片，想让图片居中：
-            1.背景图 background-size:contain;
-            2.position:absolute; left:50%;margin-left:-width/2;(transform:translateX(-50%))
-            3.不能使用text-aligin:center;因为图片太大，已经超出了父容器
-            <img src="" alt="...">
-            -->
-            <!--<div class="carousel-caption">
-                标题
-            </div>-->
-            <!--为了让图片在不同的设备上显示不同尺寸的图片。需要图片自适应-->
-        </div>
-        <div class="item" data-img-lg="imgs/slide_02_2000x410.jpg" data-img-xs="imgs/slide_02_640x340.jpg">
-        </div>
-        <div class="item" data-img-lg="imgs/slide_03_2000x410.jpg" data-img-xs="imgs/slide_03_640x340.jpg">
-        </div>
-
-        <!-- Controls 控制按钮-->
-        <a class="left carousel-control" href="#main-ad" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#main-ad" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
-</section>
-```
-
-```js
-# 动态判断当前屏幕的大小，根据大小来进行不同的适应
-$(function () {
-    //当文档加载完成才会执行
-    //根据屏幕宽度的变化决定轮播图应该展示什么
-    function resize() {
-        //获取屏幕宽度
-        var windowWidth = $(window).width();
-        //判断屏幕属于大，小屏
-        var isSmallScreen = windowWidth < 768;
-        //小屏
-        $('#main-ad >.carousel-inner > .item').each(function (i, item) {
-            /*
-            * $element.data()
-            * 一个函数，专门用于取元素上的自定义属性（data-xxx）
-            * 函数的参数是我们要取得属性名称(xxx)
-            * */
-            var $item = $(item)
-            var imgSrc = $item.data(isSmallScreen ? 'img-xs' : 'img-lg')
-
-            $item.css('backgroundImage', "url('" + imgSrc + "')"
-            );
-            //我们需要小图时，尺寸等比例变化，所以小图我们使用img方式
-            if (isSmallScreen) {
-                $item.html('<img src="' + imgSrc + '" alt=""/>')
-            } else {
-                $item.empty();
-            }
-
-        })
-        //根据大小为界面上的每一张轮播图设置背景
-    }
-
-    //让windows对象立触发resize
-    $(window).on('resize', resize).trigger('resize')
-
-});
-```
-
-
-
-### 5.1.Bootstrap JS插件使用
-
-- 在一个较小屏幕下展示一个超宽的图片，想让图片居中显示
-  - 背景图
-  - p-a l 50% m-l -width/2
-
-### 5.2.background使用
-
-#### 5.2.1.background-size
-
-- length
-  - 如100px 100px
-- percentage
-  - 如90% 90%
-- cover
-  - 背景图片的较小边放大到目标大小结束
-- contain
-  - 相反
-
-### 5.3.图片响应式
-
-- 目的
-  - 各种终端都需要正常显示图片
-  - 移动端应该使用更小（体积）的图片
-- 实现方式
-
-### 5.4.window resize事件
-
-## 6.网站特性
-
-![1553840181731](C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\1553840181731.png)
-
-有版心，故用.container
-
-超小屏幕隐藏，其他展示：hidden-xs
-
-栅格系统内容的展示使用媒体对象样式
-
-
-
-使用网格系统实现响应式布局
-
-+ 小屏幕为2列 .col-xs-6
-+ 中屏幕和大屏幕为3列 .col-sm-4
-
-### 6.1.网格系统
-
-### 6.2.媒体对象样式
-
-### 6.3.响应式辅助类型
-
-```
-- hidden-xx
-```
-
-```html
-<!--特色介绍-->
-<!--hidden-xxx 谁隐藏就只隐藏谁，其他的均显示-->
-<section id="produce" class="hidden-xs">
-    <div class="container">
-        <div class="row">
-            <!--屏幕>992px时，占4列，共3列，此时，若屏幕大小为1200以上也会匹配到col-md-4-->
-            <div class="col-sm-6 col-md-4">
-                <a href="#">
-                    <div class="media">
-                        <div class="media-left">
-                            <i class="icon-uniE907"></i>
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">支付交易保障</h4>
-                            <p>银联支付全程保证支付安全</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-sm-6 col-md-4">
-                <a href="#">
-                    <div class="media">
-                        <div class="media-left">
-                            <i class="icon-uniE903"></i>
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">平台财产安全</h4>
-                            <p>由PICC保驾护航</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-sm-6 col-md-4">
-                <a href="#">
-                    <div class="media">
-                        <div class="media-left">
-                            <i class="icon-uniE901"></i>
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">交易安全</h4>
-                            <p>由中国人寿财险对借款人承保</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-sm-6 col-md-4">
-                <a href="#">
-                    <div class="media">
-                        <div class="media-left">
-                            <i class="icon-uniE900"></i>
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">安全保障</h4>
-                            <p>独创八层安全保障机制</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-sm-6 col-md-4">
-                <a href="#">
-                    <div class="media">
-                        <div class="media-left">
-                            <i class="icon-uniE904"></i>
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">筛选优质资产</h4>
-                            <p>对接上海资信征信系统</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-sm-6 col-md-4">
-                <a href="#">
-                    <div class="media">
-                        <div class="media-left">
-                            <i class="icon-uniE902"></i>
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">联合信息发布</h4>
-                            <p>通过路透社共同发布利率指数报告</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
-```
-
-```css
-/*特色介绍区域*/
-#produce {
-    padding: 50px 0;
-    border-bottom: 1px solid #c0c0c0;
-}
-
-#produce i {
-    font-size: 34px;
-}
-
-#produce .icon-uniE907::before {
-    content: '\e907';
-}
-
-#produce .icon-uniE903::before {
-    content: '\e903';
-}
-
-#produce .icon-uniE901::before {
-    content: '\e901';
-}
-
-#produce .icon-uniE900::before {
-    content: '\e900';
-}
-
-#produce .icon-uniE904::before {
-    content: '\e907';
-}
-
-#produce .icon-uniE902::before {
-    content: '\e902';
-}
-
-#produce > .container > .row > div {
-    height: 60px;
-    padding: 10px 0 60px 0px;
-}
-
-#produce > .container > .row > div > a {
-    color: #333;
-    text-decoration: none;
-}
-
-#produce > .container > .row > div > a:hover {
-    color: #e92322;
-    text-decoration: none;
-}
-
-/*#produce > .container > .row > div:nth-of-type(2n) {
-    height: 60px;
-    background-color: deeppink;
-}
-
-#produce > .container > .row > div:nth-of-type(2n+1) {
-    height: 60px;
-    background-color: deepskyblue;
-}*/
-
-```
-
-
-
-## 7.预约投标
-
-![1553842450971](C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\1553842450971.png)
-
-### 7.1.pull-left
-
-
-
-### 7.2.pull-right
-
-```html
-<!--立即预约-->
-<section id="book">
-    <div class="container">
-        <p class="pull-left"><i class="icon-uniE906"></i>现在有<span>458</span>人在排队，累计预约交易成功<span>7409</span>次。
-            什么是预约投标？
-            <a href="#">立即预约</a>
-        </p>
-        <!--pull-right 向右浮动-->
-        <!--hidden-xs-->
-        <P class="pull-right hidden-xs hidden-sm"><i class="icon-uniE905"></i><a href="#">微金所企业宣传片</a></P>
-    </div>
-</section>
-```
-
-```css
-/*立即预约区域*/
-#book {
-    border-bottom: 1px solid #c0c0c0;
-    padding: 20px 0;
-}
-
-#book .icon-uniE906::before {
-    content: '\e906';
-    font-size: 14px;
-}
-
-#book .icon-uniE905::before {
-    content: '\e905';
-}
-
-#book > .container > p {
-    /*line-height: 60px;一旦换行，第二行也有行高，*/
-    font-size: 14px;
-    /*bootstrap默认p标签有10px的下外边距*/
-    margin-bottom: 0;
-}
-
-#book > .container .pull-left > span,
-#book > .container .pull-left > a {
-    color: #e92322;
-}
-
-#book > .container .pull-left > a {
-    border-bottom: 1px dashed #e92322;
-}
-
-#book > .container .pull-left > a:hover {
-    text-decoration: none;
-}
-```
-
-
-
-## 8.投资产品
-
-### 8.1.Tab选项卡
-
-```html
-<!-- 页签 -->
-    <!-- Nav tabs -->
-    <ul class="nav nav-tabs">
-        <li class="active"><a href="#home" data-toggle="tab">Home</a></li>
-        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
-        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
-        <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
-    </ul>
-    <!--内容-->
-    <!-- Tab panes -->
-    <div class="tab-content">
-        <div class="tab-pane active" id="home">1</div>
-        <div role="tabpanel" class="tab-pane" id="profile">2</div>
-        <div role="tabpanel" class="tab-pane" id="messages">3</div>
-        <div role="tabpanel" class="tab-pane" id="settings">4</div>
-    </div>
-```
-
-
-
-代码：
-
-```html
-<ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#tab_01" aria-controls="tab_01" role="tab"
-                                              data-toggle="tab">特别推荐</a>
-    </li>
-    <li role="presentation"><a href="#tab_02" aria-controls="tab_02" role="tab"
-                               data-toggle="tab">微投资</a>
-    </li>
-    <li role="presentation"><a href="#tab_03" aria-controls="tab_03" role="tab"
-                               data-toggle="tab">微小宝</a></li>
-    <li role="presentation"><a href="#tab_04" aria-controls="tab_04" role="tab"
-                               data-toggle="tab">微消费</a></li>
-    <li role="presentation"><a href="#tab_04" aria-controls="tab_04" role="tab"
-                               data-toggle="tab">微增利</a></li>
-    <li role="presentation"><a href="#tab_04" aria-controls="tab_04" role="tab"
-                               data-toggle="tab">微金宝</a></li>
-    <li role="presentation"><a href="#tab_04" aria-controls="tab_04" role="tab"
-                               data-toggle="tab">微转让</a></li>
-    <li class="pull-right"><a href="#">更多</a></li>
-</ul>
-
-<!-- Tab panes 选项卡内容-->
-<!--bootstrap中可以设置淡入淡出：.fade类和.fade .in-->
-<div class="tab-content">
-    <div role="tabpanel" class="tab-pane fade in active" id="tab_01">
-        <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-4">
-                1
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4">
-                2
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4">
-                3
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4">
-                4
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4">
-                5
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4">
-               6
-            </div>
-        </div>
-    </div>
-```
-
-#### 选项卡内容
-
-```html
-<div class="panel panel-my active">
-                            <div class="panel-heading">
-                                <p><strong>8</strong><sub>%</sub><br>
-                                    <span>年利率</span>
-                                </p>
-                            </div>
-                            <div class="panel-body">
-                                <h5>新手体验表0605期</h5>
-                                <div class="row">
-                                    <div class="col-xs-6 text-left">
-                                        <p>起步价</p>
-                                        <!--strong sub 具有语义-->
-                                        <p><strong>1000.00</strong><sub>万</sub></p>
-                                    </div>
-                                    <div class="col-xs-6 text-right">
-                                        <p>起步价</p>
-                                        <!--strong sub 具有语义-->
-                                        <p><strong>1000.00</strong><sub>万</sub></p>
-                                    </div>
-                                    <div class="col-xs-6 text-left">
-                                        <p>起步价</p>
-                                        <!--strong sub 具有语义-->
-                                        <p><strong>1000.00</strong><sub>万</sub></p>
-                                    </div>
-                                    <div class="col-xs-6 text-right">
-                                        <p>起步价</p>
-                                        <!--strong sub 具有语义-->
-                                        <p><strong>1000.00</strong><sub>万</sub></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-```
-
-```css
-.panel-my {
-    border: 0;
-    border-radius: 0;
-    box-shadow: 1px 1px 5px #ccc;
-}
-
-.panel-my > .panel-heading strong,
-.panel-my.disabled > .panel-heading strong {
-    font-size: 36px;
-    color: #e92322;
-}
-
-.panel-my > .panel-heading span,
-.panel-my.disabled > .panel-heading span {
-    font-size: 10px;
-    color: #222;
-}
-.panel-my.active > .panel-heading strong {
-    color: #fff;
-}
-.panel-my.active > .panel-heading span {
-    color: #fff;
-}
-.panel-my.active {
-    background-color: #e92322;
-    color: #fff;
-}
-
-.panel-my.active::before {
-    content: '\e915';
-    font-family: myfont;
-    position: absolute;
-    font-size: 50px;
-    top: -13px;
-    left: 12px;
-}
-
-.panel-my.active .panel-heading {
-    color: #fff;
-}
-
-.panel-my.disabled {
-    background-color: #e0e0e0;
-}
-
-.panel-my > .panel-heading {
-    color: #333;
-    /* background-color: #f5f5f5;
-     border-color: #ddd;*/
-    float: right;
-    width: 120px;
-    height: 150px;
-    border-left: 1px dashed #c0c0c0;
-    text-align: center;
-    position: relative;
-    padding: 45px 0 35px;
-}
-
-.panel-my > .panel-heading::before,
-.panel-my > .panel-heading::after {
-    content: ' ';
-    width: 16px;
-    height: 16px;
-    /*只要比50%大，都为圆，因为饱和了*/
-    border-radius: 8px;
-    background-color: #f0f0f0;
-    position: absolute;
-}
-
-.panel-my > .panel-heading::before {
-    top: -8px;
-    left: -8px;
-}ss
-
-.panel-my > .panel-heading::after {
-    bottom: -8px;
-    left: -8px;
-    /*box-shadow是从左上方照射的，方向设为0，则从上方照射，故下侧看不到,而且必须为内阴影*/
-    box-shadow: 0 2px 1px #ccc inset;
-}
-
-.panel-my > .panel-body {
-    margin-right: 120px;
-    height: 150px;
-
-}
-
-.panel-my > .panel-heading + .panel-collapse > .panel-body {
-    border-top-color: #ddd;
-}
-
-.panel-my > .panel-heading .badge {
-    color: #f5f5f5;
-    background-color: #333;
-}
-```
-
-
-
-### 8.2.网格系统
-
-
-
-### 8.3.::before
-
-
-
-### 8.4.::after
-
-
-
-### 8.5.tooltip插件
-
-jquery在追加tooltip元素的时候，会把元素与元素之间的空格（多个空格默认只显示一个空格，这个空格的宽度为一个font-size）删除，然后替换掉，这时我么可以设置父级元素的font-size为0，让空格一开始就没有，然后再设置各个子元素的font-size
-
-即可；
-
-标签横向滚动：
-
-需要设置父级ul的宽度为各个子li的宽度+父级的padding-left
-
-父级ul的包裹容器ul-wrapper设置overflow：scroll
-
-```html
-<!--产品推荐-->
-<section id="products">
-    <div class="container">
-        <!-- Nav tabs选项卡标题 -->
-        <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#tab_01" aria-controls="tab_01" role="tab"
-                                                      data-toggle="tab">特别推荐</a>
-            </li>
-            <li role="presentation"><a href="#tab_02" aria-controls="tab_02" role="tab"
-                                       data-toggle="tab">微投资</a>
-            </li>
-            <li role="presentation"><a href="#tab_03" aria-controls="tab_03" role="tab"
-                                       data-toggle="tab">微小宝</a></li>
-            <li role="presentation"><a href="#tab_04" aria-controls="tab_04" role="tab"
-                                       data-toggle="tab">微消费</a></li>
-            <li role="presentation"><a href="#tab_04" aria-controls="tab_04" role="tab"
-                                       data-toggle="tab">微增利</a></li>
-            <li role="presentation"><a href="#tab_04" aria-controls="tab_04" role="tab"
-                                       data-toggle="tab">微金宝</a></li>
-            <li role="presentation"><a href="#tab_04" aria-controls="tab_04" role="tab"
-                                       data-toggle="tab">微转让</a></li>
-            <li class="pull-right"><a href="#">更多</a></li>
-        </ul>
-        <!-- Tab panes 选项卡内容-->
-        <!--bootstrap中可以设置淡入淡出：.fade类和.fade .in-->
-        <div class="tab-content">
-            <div class="tab-pane active" id="product_nav01">
-                <div class="col-xs-12 col-sm-6 col-md-4">
-                    <a href="#" class="product_box active">
-                        <div class="pro_right">
-                            <p><b>8</b><sub>%</sub></p>
-                            <p>年利率</p>
-                        </div>
-                        <div class="pro_left">
-                            <h3 class="text-center">新手体验标1002期</h3>
-                            <div class="col-xs-6">
-                                <p>起投金额(元)</p>
-                                <p>0.01万</p>
-                            </div>
-                            <div class="col-xs-6 text-right">
-                                <p>起投金额(元)</p>
-                                <p>0.01万</p>
-                            </div>
-                            <div class="col-xs-6">
-                                <p>起投金额(元)</p>
-                                <p>0.01万</p>
-                            </div>
-                            <div class="col-xs-6 text-right">
-                                <p>起投金额(元)</p>
-                                <p>0.01万</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-4">
-                    <a href="#" class="product_box">
-                        <div class="pro_right">
-                            <div class="tips">
-                                <span data-toggle="tooltip" data-placement="top" title="微金宝" class="red">微</span>
-                                <span data-toggle="tooltip" data-placement="bottom" title="河南省" class="green">豫</span>
-                            </div>
-                            <p><b>8</b><sub>%</sub></p>
-                            <p>年利率</p>
-                        </div>
-                        <div class="pro_left">
-                            <h3 class="text-center">新手体验标1002期</h3>
-                            <div class="col-xs-6">
-                                <p>起投金额(元)</p>
-                                <p>0.01万</p>
-                            </div>
-                            <div class="col-xs-6 text-right">
-                                <p>起投金额(元)</p>
-                                <p>0.01万</p>
-                            </div>
-                            <div class="col-xs-6">
-                                <p>起投金额(元)</p>
-                                <p>0.01万</p>
-                            </div>
-                            <div class="col-xs-6 text-right">
-                                <p>起投金额(元)</p>
-                                <p>0.01万</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-4">
-                    <a href="#" class="product_box">
-                        <div class="pro_right">
-                            <p><b>8</b><sub>%</sub></p>
-                            <p>年利率</p>
-                        </div>
-                        <div class="pro_left">
-                            <h3 class="text-center">新手体验标1002期</h3>
-                            <div class="col-xs-6">
-                                <p>起投金额(元)</p>
-                                <p>0.01万</p>
-                            </div>
-                            <div class="col-xs-6 text-right">
-                                <p>起投金额(元)</p>
-                                <p>0.01万</p>
-                            </div>
-                            <div class="col-xs-6">
-                                <p>起投金额(元)</p>
-                                <p>0.01万</p>
-                            </div>
-                            <div class="col-xs-6 text-right">
-                                <p>起投金额(元)</p>
-                                <p>0.01万</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-4">
-                    <a href="#" class="product_box">
-                        <div class="pro_right">
-                            <p><b>8</b><sub>%</sub></p>
-                            <p>年利率</p>
-                        </div>
-                        <div class="pro_left">
-                            <h3 class="text-center">新手体验标1002期</h3>
-                            <div class="col-xs-6">
-                                <p>起投金额(元)</p>
-                                <p>0.01万</p>
-                            </div>
-                            <div class="col-xs-6 text-right">
-                                <p>起投金额(元)</p>
-                                <p>0.01万</p>
-                            </div>
-                            <div class="col-xs-6">
-                                <p>起投金额(元)</p>
-                                <p>0.01万</p>
-                            </div>
-                            <div class="col-xs-6 text-right">
-                                <p>起投金额(元)</p>
-                                <p>0.01万</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="tab-pane" id="product_nav02">2</div>
-            <div class="tab-pane" id="product_nav03">3</div>
-            <div class="tab-pane" id="product_nav04">4</div>
-            <div class="tab-pane" id="product_nav05">5</div>
-            <div class="tab-pane" id="product_nav06">6</div>
-            <div class="tab-pane" id="product_nav07">7</div>
-        </div>
-</section>
-```
-
-```css
-.product_box{
-    display: block;
-    width: 100%;
-    height: 150px;
-    background: #fff;
-    box-shadow: 3px 3px 5px #d8d8d8;
-    margin-top: 30px;
-    color: #666;
-}
-.product_box:hover{
-    color: #666;
-}
-.product_box.active{
-    background: #e92322;
-    color: #fff;
-    position: relative;
-}
-/*:  ::  css3规范 :伪类  :: 伪元素*/
-.product_box.active::before{
-    content: "\e915";
-    position: absolute;
-    left: 0;
-    top: -7px;
-    font-family: wjs;
-    font-size: 33px;
-}
-
-.product_box .pro_left{
-    overflow: hidden;
-}
-.product_box .pro_left h3{
-    font-size: 16px;
-    margin-top: 10px;
-}
-.product_box .pro_left div{
-    font-size: 12px;
-}
-
-/*浮动元素优先 两栏自适应注意*/
-.product_box .pro_right{
-    float: right;
-    width: 80px;
-    height: 150px;
-    text-align: center;
-    border-left: 1px dashed #ccc;
-    position: relative;
-}
-.product_box .pro_right::before,
-.product_box .pro_right::after{
-    content: "";
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    border-radius: 6px;
-    background: #f5f5f5;
-    left: -6px;
-}
-.product_box .pro_right::before{
-    top: -6px;
-    /*
-    参数1：x轴的偏移
-    参数2：y轴的偏移
-    参数3：阴影的模糊的
-    参数4：阴影的延伸
-    参数5：阴影的颜色
-    参数6：内阴影
-    */
-    box-shadow: 0 -2px 2px #d8d8d8 inset;
-}
-.product_box .pro_right::after{
-    bottom: -6px;
-    box-shadow: 0 2px 2px #d8d8d8 inset;
-}
-.product_box .pro_right .tips{
-    position: absolute;
-    left: 0;
-    top: 10px;
-    width: 100%;
-}
-.product_box .pro_right .tips span{
-    width: 16px;
-    height: 16px;
-    text-align: center;
-    line-height: 16px;
-    border-width: 1px;
-    border-style: solid;
-    display: inline-block;
-}
-.product_box .pro_right .tips .red{
-    color: red;
-    border-color: red;
-}
-.product_box .pro_right .tips .green{
-    color: green;
-    border-color: green;
-}
-
-    /*
-    找到P元素，通过P找到父元素，通过父元素找子元素当中类型为P的，然再去找第几个。
-    p:first-of-type
-    p:last-of-type
-    p:nth-of-type(n)
-    p:nth-last-of-type(n)
-    如果使用的是child;
-    p:first-child
-    找到P元素,通过P找到父元素，通过父元素找所有的子元素，找第一个元素，匹配判断类型(如果不是无效选择器)
-    */
-.product_box .pro_right p:first-of-type{
-    margin-top: 25px;
-    color: #e92322;
-}
-.product_box.active .pro_right p:first-of-type{
-    color: #fff;
-}
-.product_box .pro_right p:first-of-type b{
-    font-size: 48px;
-}
-.product_box .pro_right p:first-of-type sub{
-    bottom: 0;
-    font-size: 12px;
-}
-.product_box .pro_right p:last-child{}
-```
-
-
-
-## 9.新闻资讯
-
-```html
-<!--新闻-->
-<!-- 新闻列表 -->
-  <section id="news">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-2 col-sm-offset-3">
-          <div class="news-title">全部新闻</div>
-        </div>
-        <div class="col-sm-1">
-          <ul class="nav nav-pills nav-stacked">
-            <li role="presentation" class="active"><a data-title="全部新闻" href="#news01" data-toggle="tab" role="tab"><i class="icon-news01"></i></a></li>
-            <li role="presentation"><a data-title="媒体新闻" href="#news02" data-toggle="tab" role="tab"><i class="icon-news02"></i></a></li>
-            <li role="presentation"><a data-title="行业资讯" href="#news03" data-toggle="tab" role="tab"><i class="icon-news03"></i></a></li>
-            <li role="presentation"><a data-title="XXXX" href="#news04" data-toggle="tab" role="tab"><i class="icon-news04"></i></a></li>
-          </ul>
-        </div>
-        <div class="col-sm-6">
-          <div class="tab-content">
-            <div role="tabpanel" class="tab-pane fade in active" id="news01">
-              <ul>
-                <li>微金所发钱了，快来抢！！！！！</li>
-                <li>微金所发钱了，快来抢！！！！！</li>
-                <li>微金所发钱了，快来抢！！！！！</li>
-                <li>微金所发钱了，快来抢！！！！！</li>
-              </ul>
-            </div>
-            <div role="tabpanel" class="tab-pane fade" id="news02">
-              <ul>
-                <li>微金所发钱了，快来抢！！！！！</li>
-                <li>微金所发钱了，快来抢！！！！！</li>
-              </ul>
-            </div>
-            <div role="tabpanel" class="tab-pane fade" id="news03">
-              <ul>
-                <li>微金所发钱了，快来抢！！！！！</li>
-                <li>微金所发钱了，快来抢！！！！！</li>
-                <li>微金所发钱了，快来抢！！！！！</li>
-                <li>微金所发钱了，快来抢！！！！！</li>
-                <li>微金所发钱了，快来抢！！！！！</li>
-              </ul>
-            </div>
-            <div role="tabpanel" class="tab-pane fade" id="news04">
-              <ul>
-                <li>微金所发钱了，快来抢！！！！！</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-```
-
-```js
-// a点击注册事件
-  var $newTitle = $('.news-title');
-  $('#news .nav-pills a').on('click', function() {
-    // 获取当前点击元素
-    var $this = $(this);
-    // 获取对应的title值
-    var title = $this.data('title');
-    // 将title设置到相应的位置
-    $newTitle.text(title);
-  });
-```
-
-```css
-/* 新闻 */
-
-#news {
-  padding: 50px 0;
-  border-bottom: 1px solid #c0c0c0;
-}
-
-#news .news-title {
-  padding: 15px 0;
-  font-size: 18px;
-  font-weight: 400;
-  text-align: center;
-  border-bottom: 1px dashed #c0c0c0;
-  position: relative;
-  margin-right: 10px;
-}
-
-#news .news-title::after {
-  content: ' ';
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  border-radius: 5px;
-  border: 1px solid #c0c0c0;
-  position: absolute;
-  bottom: -5px;
-  right: -10px;
-}
-
-
-/*#news .nav-pills a i {
-  font-size: 50px;
-}*/
-
-.icon-news01:before {
-  content: "\e90e";
-  font-size: 28px;
-  color: #EAEAEA;
-}
-
-.icon-news02:before {
-  content: "\e90f";
-  font-size: 28px;
-  color: #EAEAEA;
-}
-
-.icon-news03:before {
-  content: "\e910";
-  font-size: 28px;
-  color: #EAEAEA;
-}
-
-.icon-news04:before {
-  content: "\e911";
-  font-size: 28px;
-  color: #EAEAEA;
-}
-
-@media (max-width: 768px) {
-  #news .nav-stacked > li {
-    float: left;
-    margin-right: 20px;
-  }
-}
-```
-
-
-
-### 9.1.Tab选项卡
-
-
-
-### 9.2.响应式偏移
-
-
-
-## 10.合作伙伴
-
-```html
-<!--合作伙伴-->
-<footer class="wjs_partner">
-    <div class="container">
-        <h3 class="text-center">合作伙伴</h3>
-        <ul>
-            <li><a href="#"><span class="wjs_icon wjs_icon_partner01"></span></a></li>
-            <li><a href="#"><span class="wjs_icon wjs_icon_partner02"></span></a></li>
-            <li><a href="#"><span class="wjs_icon wjs_icon_partner03"></span></a></li>
-            <li><a href="#"><span class="wjs_icon wjs_icon_partner04"></span></a></li>
-            <li><a href="#"><span class="wjs_icon wjs_icon_partner05"></span></a></li>
-            <li><a href="#"><span class="wjs_icon wjs_icon_partner06"></span></a></li>
-            <li><a href="#"><span class="wjs_icon wjs_icon_partner07"></span></a></li>
-            <li><a href="#"><span class="wjs_icon wjs_icon_partner08"></span></a></li>
-            <li><a href="#"><span class="wjs_icon wjs_icon_partner09"></span></a></li>
-        </ul>
-    </div>
-</footer>
-```
-
-```css
-/*合作伙伴*/
-
-#hzhb {
-  padding: 30px 0;
-}
-
-#hzhb ul {
-  padding: 0;
-  list-style: none;
-  width: 818px;
-  /*清除浮动*/
-  position: relative;
-  overflow: hidden;
-}
-
-#hzhb ul li {
-  float: left;
-}
-
-#hzhb ul li + li {
-  border-left: 1px dashed #e0e0e0;
-}
-
-#hzhb ul li a {
-  padding: 10px 20px;
-  font-size: 50px;
-  color: #888;
-}
-
-#hzhb ul li a:hover {
-  text-decoration: none;
-}
-
-.icon-uniE930:hover {
-  color: #df3232;
-}
-
-.icon-uniE930:before {
-  content: "\e946";
-}
-
-.icon-uniE92F:hover {
-  color: #e8380d;
-}
-
-.icon-uniE92F:before {
-  content: "\e92f";
-}
-
-.icon-uniE92E:hover {
-  color: #ed6f00;
-}
-
-.icon-uniE92E:before {
-  content: "\e92e";
-}
-
-.icon-uniE92A:hover {
-  color: #159f69;
-}
-
-.icon-uniE92A:before {
-  content: "\e92a";
-}
-
-.icon-uniE929:hover {
-  color: #07569e;
-}
-
-.icon-uniE929:before {
-  content: "\e929";
-}
-
-.icon-uniE931:hover {
-  color: #004098;
-}
-
-.icon-uniE931:before {
-  content: "\e931";
-}
-
-.icon-uniE92C:hover {
-  color: #d32019;
-}
-
-.icon-uniE92C:before {
-  content: "\e92c";
-}
-
-.icon-uniE92B:hover {
-  color: #3eac4a;
-}
-
-.icon-uniE92B:before {
-  content: "\e92b";
-}
-
-.icon-uniE92D:hover {
-  color: #2bb289;
-}
-
-.icon-uniE92D:before {
-  content: "\e92d";
-}
-```
-
-
-
-### 10.1.相邻兄弟选择器
-
-
-
-## 11.登录对话框
-
-### 11.1模态框
-
-```html
-<a href="#" class="btn btn-link btn-sm" data-toggle="modal" data-target="#login_form">登录</a>
-```
-
-```html
-<!-- Modal -->
-  <div class="modal fade" id="login_form" tabindex="-1" role="dialog" aria-labelledby="login_form_title">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="login_form_title">登录</h4>
-        </div>
-        <div class="modal-body">
-          <form class="form-horizontal">
-            <div class="form-group">
-              <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-              <div class="col-sm-10">
-                <input type="email" class="form-control" id="inputEmail3" placeholder="请输入邮箱">
-              </div>
-            </div>
-            <div class="form-group-lg">
-              <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-              <div class="col-sm-10">
-                <input type="password" class="form-control" id="inputPassword3" placeholder="请输入密码">
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="col-sm-offset-2 col-sm-10">
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox"> 
-                      Remember me
-                  </label>
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">Sign in</button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-```
-
-
-
-### 11.2表单样式
-
-
-
-## 12.导航吸顶
-
-### 12.1affix组件
-
-```html
-<nav class="navbar navbar-itcast navbar-static-top" data-spy="affix" data-offset-top="260" data-offset-bottom="200">
-```
-
-
-
-## 13.深度自定义
-
-### 13.1.http://v3.bootcss.com/customize
-
-### 13.2通过 Less 文件修改
 
 
 
